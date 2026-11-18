@@ -1,0 +1,7 @@
+seed: 42
+val_fraction: 0.2
+positive_class: synthetic
+test_day_used_for_selection: false
+weights_overwritten: false
+spectra_weights_unchanged: true
+aasist_weights_unchanged: true

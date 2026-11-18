@@ -1,0 +1,17 @@
+Результаты прогона уже в data/output. Веса в репозиторий не входят.
+
+Скачать в models/spectra_0:
+- репозиторий Hugging Face lab260/spectra_0
+- файлы model.py и model.safetensors
+- model.py в этом репозитории уже есть, нужен model.safetensors
+
+Скачать в models/spectra_aasist3:
+- репозиторий Hugging Face lab260/Spectra-AASIST3
+- файлы model.py и model.safetensors
+- model.py в этом репозитории уже есть, нужен model.safetensors
+
+При первом запуске сам догружается facebook/wav2vec2-xls-r-300m.
+
+Аудио для прогона — клиентские mono WAV из voice-dataset-collector,
+папка data/samples/b2x/2026-11/n100. Список файлов: samples.csv там же.
+Команды: src/run_inference.py и src/run_aasist3.py, канал 0.

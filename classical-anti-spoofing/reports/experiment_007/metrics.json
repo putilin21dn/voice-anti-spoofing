@@ -1,0 +1,77 @@
+{
+  "model": "svm",
+  "split": "validation",
+  "threshold": -0.38624254602031194,
+  "params": {
+    "C": 1.0,
+    "gamma": "scale"
+  },
+  "metrics": {
+    "human": 202,
+    "machine": 48,
+    "tp": 45,
+    "fn": 3,
+    "tn": 182,
+    "fp": 20,
+    "recall_synthetic": 0.9375,
+    "specificity_human": 0.900990099009901,
+    "precision_synthetic": 0.6923076923076923,
+    "f1_synthetic": 0.7964601769911505,
+    "balanced_accuracy": 0.9192450495049505,
+    "fpr": 0.09900990099009901,
+    "fnr": 0.0625,
+    "confusion_matrix_labels": [
+      "human",
+      "machine"
+    ],
+    "confusion_matrix": [
+      [
+        182,
+        20
+      ],
+      [
+        3,
+        45
+      ]
+    ],
+    "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+    "roc_auc": 0.9647277227722771,
+    "pr_auc": 0.8229116439324298
+  },
+  "candidates": [
+    {
+      "params": {
+        "C": 0.3,
+        "gamma": "scale"
+      },
+      "threshold": -0.07557549176179676,
+      "validation_balanced_accuracy": 0.9063531353135313,
+      "validation_roc_auc": 0.9636963696369636
+    },
+    {
+      "params": {
+        "C": 1.0,
+        "gamma": "scale"
+      },
+      "threshold": -0.38624254602031194,
+      "validation_balanced_accuracy": 0.9192450495049505,
+      "validation_roc_auc": 0.9647277227722771
+    },
+    {
+      "params": {
+        "C": 3.0,
+        "gamma": "scale"
+      },
+      "threshold": -0.37646792104611104,
+      "validation_balanced_accuracy": 0.9063531353135313,
+      "validation_roc_auc": 0.9626650165016502
+    }
+  ],
+  "n_features": 200,
+  "train_rows": 1002,
+  "validation_rows": 250,
+  "test_used_for_selection": false,
+  "variant": "no_energy",
+  "excluded_log_energy": 252,
+  "exclusion_rule": "До отбора убраны energy_rms и нулевой коэффициент LFCC, MFCC, CQCC: static, delta и delta-delta."
+}

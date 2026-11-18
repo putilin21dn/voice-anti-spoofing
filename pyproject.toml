@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "voice-anti-spoofing"
+version = "0.1.0"
+description = "Local research workspace for synthetic-speech and answering-machine detection"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "License was not present in the source repositories" }
+dependencies = []
+
+[project.optional-dependencies]
+dataset-collector = [
+    "psycopg[binary]>=3.2,<4",
+    "boto3>=1.35,<2",
+    "python-dotenv>=1.0,<2",
+]
+classical = [
+    "numpy>=1.26",
+    "scipy>=1.12",
+    "pandas>=2.1",
+    "soundfile>=0.12",
+    "librosa>=0.10",
+    "PyYAML>=6",
+    "tqdm>=4.66",
+    "webrtcvad-wheels>=2.0.10",
+    "spafe>=0.3.2",
+    "praat-parselmouth>=0.4.3",
+    "scikit-learn>=1.4",
+    "lightgbm>=4.3",
+    "matplotlib>=3.8",
+    "shap>=0.46",
+]
+spectra0 = [
+    "transformers>=4.40",
+    "huggingface_hub>=0.23",
+    "safetensors>=0.4",
+    "soundfile>=0.12",
+    "numpy>=1.26",
+    "scipy>=1.12",
+    "pandas>=2.1",
+    "tqdm>=4.66",
+]
+synthetic-dataset = [
+    "PyYAML>=6",
+]
+
+[tool.setuptools]
+packages = []
+py-modules = []

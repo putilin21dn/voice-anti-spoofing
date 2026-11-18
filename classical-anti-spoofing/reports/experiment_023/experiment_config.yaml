@@ -1,0 +1,113 @@
+seed: 42
+paths:
+  samples_csv: ../voice-dataset-collector/data/samples/b2x/2026-11/samples.csv
+  human_manifest: ../voice-dataset-collector/data/manifests/b2x_2026-11_human.csv
+  machine_manifest: ../voice-dataset-collector/data/manifests/b2x_2026-11_machine.csv
+  n100_csv: ../voice-dataset-collector/data/samples/b2x/2026-11/n100/samples.csv
+  test_csv: ../voice-dataset-collector/data/samples/b2x/2026-11/test20/samples.csv
+  spectra0_n100_csv: ../voice-anti-spoofing-spectra0/data/output/spectra0_results.csv
+  spectra0_test_csv: ../voice-anti-spoofing-spectra0/data/output/spectra0_test20_results.csv
+  features_dir: data/features
+  splits_dir: data/splits
+  reports_dir: reports
+  logs_dir: logs
+audio:
+  client_channel: 0
+  sample_rate: 8000
+  target_sample_rate: 8000
+  channel_override: null
+  allow_upsample: false
+vad:
+  mode: 2
+  frame_ms: 20
+  merge_gap_ms: 300
+  min_feature_ms: 500
+quality:
+  min_segment_rms: 0.005
+  min_noise_ms: 200
+  low_snr_db: 5
+features:
+  frame_ms: 20
+  hop_ms: 10
+  lfcc:
+    enabled: true
+    n_filters: 20
+    n_ceps: 20
+    fmin: 0
+    fmax: 4000
+    preemphasis: 0.97
+    include_deltas: true
+    delta_width: 2
+  mfcc:
+    enabled: true
+    n_mels: 26
+    n_mfcc: 20
+    fmin: 0
+    fmax: 4000
+    preemphasis: 0.97
+    include_deltas: true
+    delta_width: 2
+  cqcc:
+    enabled: true
+    num_ceps: 13
+    nfft: 512
+    win_len_s: 0.032
+    win_hop_s: 0.01
+    fmin: 62.5
+    fmax: 4000
+    number_of_octaves: 6
+    bins_per_octave: 24
+    resampling_ratio: 1.0
+    preemphasis: 0.97
+    include_deltas: true
+    delta_width: 2
+  pitch:
+    enabled: true
+    fmin: 60
+    fmax: 400
+    frame_length: 512
+  voice_quality:
+    enabled: true
+    fmin: 60
+    fmax: 400
+    min_duration_ms: 400
+  spectral:
+    enabled: true
+    rolloff: 0.85
+split:
+  val_fraction: 0.2
+spectra0:
+  threshold: 1.02
+  score: mean_bonafide_minus_spoof_logit
+  spoof_if_score_below_threshold: true
+models:
+  max_features: 200
+  max_nan_fraction: 0.4
+  min_finite: 50
+  max_pairwise_correlation: 0.98
+  logistic_C:
+  - 0.01
+  - 0.1
+  - 1.0
+  - 10.0
+  svm_C:
+  - 0.3
+  - 1.0
+  - 3.0
+  svm_gamma:
+  - scale
+  lightgbm_n_estimators:
+  - 200
+  lightgbm_num_leaves:
+  - 15
+  - 31
+  lightgbm_learning_rate:
+  - 0.05
+  lightgbm_min_child_samples:
+  - 20
+selected_model:
+  name: svm
+  params:
+    C: 0.3
+    gamma: scale
+  threshold: -0.2166242832291352

@@ -1,0 +1,32 @@
+batch_id: confirmed_001
+spectra0_threshold: 1.02
+spectra0_score: mean_bonafide_logit_minus_spoof_logit
+spectra0_rule: spoof_if_score_below_threshold
+
+paths:
+  confirmed_manifest: data/manifests/confirmed_001.csv
+  confirmed_status: data/manifests/confirmed_001_status.yaml
+  batch_001_manifest: data/manifests/batch_001.csv
+  audio_root: .
+  classical_root: ../classical-anti-spoofing
+  classical_python: ../classical-anti-spoofing/.venv/Scripts/python.exe
+  classical_config: ../classical-anti-spoofing/config/config.yaml
+  spectra_root: ../voice-anti-spoofing-spectra0
+  test_split: ../classical-anti-spoofing/data/splits/test.csv
+  legacy_test_manifest: ../classical-anti-spoofing/data/manifests/dataset_manifest.csv
+  spectra_threshold_split: ../classical-anti-spoofing/data/splits/spectra_threshold.csv
+  logistic: ../classical-anti-spoofing/models/logistic.joblib
+  svm: ../classical-anti-spoofing/models/svm.joblib
+  lightgbm: ../classical-anti-spoofing/models/lightgbm.joblib
+  spectra0_dir: ../voice-anti-spoofing-spectra0/models/spectra_0
+  aasist3_dir: ../voice-anti-spoofing-spectra0/models/spectra_aasist3
+  evaluation_root: evaluation
+
+window:
+  target_sample_rate: 16000
+  window_samples: 64600
+  preemphasis: 0.97
+  vad_mode: 2
+  vad_frame_ms: 20
+  merge_gap_ms: 300
+  min_speech_ms: 500

@@ -1,0 +1,35 @@
+batch_id: batch_001
+host: 127.0.0.1
+port: 8765
+
+paths:
+  collector_root: ../voice-dataset-collector
+  human_manifest: ../voice-dataset-collector/data/manifests/b2x_2026-11_human.csv
+  machine_manifest: ../voice-dataset-collector/data/manifests/b2x_2026-11_machine.csv
+  splits_dir: ../classical-anti-spoofing/data/splits
+  audio_root: ../voice-dataset-collector/data/audio/b2x/2026-11
+  manifest_out: data/manifests/batch_001.csv
+  calls_out: data/annotations/calls.csv
+  segments_out: data/annotations/segments.csv
+  quality_report: reports/batch_001_quality.md
+  logs_dir: logs
+
+selection:
+  exclude_locked_splits:
+    - test
+    - spectra_threshold
+  quotas:
+    human_pool: 12
+    machine_answering: 12
+    machine_live_outcome: 8
+  always_include_conflicts: true
+  live_outcomes:
+    - b2x_lead
+    - b2x_callback
+    - b2x_not_lpr
+    - b2x_wrong_org
+    - refused
+    - b2x_async
+  machine_outcome: answering_machine
+
+annotation_target: client_channel

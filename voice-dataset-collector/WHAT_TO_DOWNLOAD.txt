@@ -1,0 +1,15 @@
+В репозитории лежат списки файлов, не сами записи и не пароли.
+
+CSV
+- data/manifests/b2x_2026-11_human.csv
+- data/manifests/b2x_2026-11_machine.csv
+- data/samples/b2x/2026-11/samples.csv
+- data/samples/b2x/2026-11/n100/samples.csv
+- data/review/b2x_2026-11_manual_machine.txt
+
+WAV заново качаются из S3 по колонке s3_key в манифестах. Бакет genai.
+Ключ объекта: calls/{external_id}/{external_id}.wav.
+В external_id и s3_key есть номер телефона.
+
+Локальный .env создаётся из .env.example и в репозиторий не кладётся.
+Веса моделей лежат в репозитории voice-anti-spoofing-spectra0, см. WHAT_TO_DOWNLOAD.txt там.

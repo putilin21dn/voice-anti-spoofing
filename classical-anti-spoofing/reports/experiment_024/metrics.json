@@ -1,0 +1,74 @@
+{
+  "model": "lightgbm",
+  "split": "validation",
+  "threshold": 0.04502100929193762,
+  "params": {
+    "n_estimators": 200,
+    "num_leaves": 31,
+    "learning_rate": 0.05,
+    "min_child_samples": 20
+  },
+  "metrics": {
+    "human": 202,
+    "machine": 48,
+    "tp": 44,
+    "fn": 4,
+    "tn": 181,
+    "fp": 21,
+    "recall_synthetic": 0.9166666666666666,
+    "specificity_human": 0.8960396039603961,
+    "precision_synthetic": 0.676923076923077,
+    "f1_synthetic": 0.7787610619469026,
+    "balanced_accuracy": 0.9063531353135313,
+    "fpr": 0.10396039603960396,
+    "fnr": 0.08333333333333333,
+    "confusion_matrix_labels": [
+      "human",
+      "machine"
+    ],
+    "confusion_matrix": [
+      [
+        181,
+        21
+      ],
+      [
+        4,
+        44
+      ]
+    ],
+    "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+    "roc_auc": 0.9554455445544555,
+    "pr_auc": 0.8684892676974427
+  },
+  "candidates": [
+    {
+      "params": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "learning_rate": 0.05,
+        "min_child_samples": 20
+      },
+      "threshold": 0.02150004420909526,
+      "validation_balanced_accuracy": 0.8826320132013201,
+      "validation_roc_auc": 0.9546204620462047
+    },
+    {
+      "params": {
+        "n_estimators": 200,
+        "num_leaves": 31,
+        "learning_rate": 0.05,
+        "min_child_samples": 20
+      },
+      "threshold": 0.04502100929193762,
+      "validation_balanced_accuracy": 0.9063531353135313,
+      "validation_roc_auc": 0.9554455445544555
+    }
+  ],
+  "n_features": 139,
+  "train_rows": 1002,
+  "validation_rows": 250,
+  "test_used_for_selection": false,
+  "variant": "spectral",
+  "excluded_log_energy": 4522,
+  "exclusion_rule": "Оставлены центроид, полоса, rolloff, flatness и zero-crossing rate. Кепстр, энергия, F0 и качество голоса убраны до отбора."
+}

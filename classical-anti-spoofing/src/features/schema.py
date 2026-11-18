@@ -1,0 +1,51 @@
+from __future__ import annotations
+
+METADATA_COLUMNS = (
+    "call_id",
+    "label",
+    "locked_split",
+    "segment_id",
+    "start_time",
+    "end_time",
+    "duration",
+    "speech_ratio",
+    "silence_ratio",
+    "energy_rms",
+    "snr_db",
+    "snr_method",
+    "recording_duration_s",
+    "speech_duration_s",
+    "sample_rate_hz",
+    "analysis_sample_rate_hz",
+    "resample_action",
+    "source_channels",
+    "channel_index",
+    "channel_reason",
+    "usable_for_features",
+    "classification_result",
+    "outcome",
+    "campaign_name",
+    "timestamp",
+    "voice_quality_reliability",
+)
+
+FLAG_COLUMNS = (
+    "flag_insufficient_duration",
+    "flag_low_energy",
+    "flag_low_snr",
+    "flag_snr_unavailable",
+    "flag_nonfinite",
+    "flag_delta_unavailable",
+    "flag_unvoiced",
+    "flag_voice_quality_8khz_limited",
+    "flag_voice_quality_unavailable",
+    "flag_lfcc_error",
+    "flag_mfcc_error",
+    "flag_cqcc_error",
+    "flag_cqcc_disabled",
+    "flag_pitch_error",
+    "flag_spectral_error",
+    "flag_partial_features",
+)
+
+FORBIDDEN_COLUMNS = frozenset({"external_id", "s3_key", "s3_bucket", "phone", "msisdn", "ani", "dnis"})

@@ -1,0 +1,26 @@
+{
+  "candidates": [
+    {
+      "params": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "learning_rate": 0.05,
+        "min_child_samples": 20
+      },
+      "threshold": 0.023514160330956803,
+      "validation_balanced_accuracy": 0.9197607260726073,
+      "validation_roc_auc": 0.9699876237623762
+    },
+    {
+      "params": {
+        "n_estimators": 200,
+        "num_leaves": 31,
+        "learning_rate": 0.05,
+        "min_child_samples": 20
+      },
+      "threshold": 0.013990800705877104,
+      "validation_balanced_accuracy": 0.9321369636963697,
+      "validation_roc_auc": 0.9714315181518152
+    }
+  ]
+}

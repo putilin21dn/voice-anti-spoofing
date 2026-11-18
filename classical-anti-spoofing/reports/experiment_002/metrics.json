@@ -1,0 +1,78 @@
+{
+  "model": "logistic",
+  "split": "validation",
+  "threshold": 0.49265447022723596,
+  "params": {
+    "C": 0.01
+  },
+  "metrics": {
+    "human": 202,
+    "machine": 48,
+    "tp": 45,
+    "fn": 3,
+    "tn": 187,
+    "fp": 15,
+    "recall_synthetic": 0.9375,
+    "specificity_human": 0.9257425742574258,
+    "precision_synthetic": 0.75,
+    "f1_synthetic": 0.8333333333333334,
+    "balanced_accuracy": 0.9316212871287128,
+    "fpr": 0.07425742574257425,
+    "fnr": 0.0625,
+    "confusion_matrix_labels": [
+      "human",
+      "machine"
+    ],
+    "confusion_matrix": [
+      [
+        187,
+        15
+      ],
+      [
+        3,
+        45
+      ]
+    ],
+    "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+    "roc_auc": 0.9631806930693069,
+    "pr_auc": 0.8962132352511566
+  },
+  "candidates": [
+    {
+      "params": {
+        "C": 0.01
+      },
+      "threshold": 0.49265447022723596,
+      "validation_balanced_accuracy": 0.9316212871287128,
+      "validation_roc_auc": 0.9631806930693069
+    },
+    {
+      "params": {
+        "C": 0.1
+      },
+      "threshold": 0.6193878283368534,
+      "validation_balanced_accuracy": 0.9176980198019802,
+      "validation_roc_auc": 0.9624587458745875
+    },
+    {
+      "params": {
+        "C": 1.0
+      },
+      "threshold": 0.5,
+      "validation_balanced_accuracy": 0.9077970297029703,
+      "validation_roc_auc": 0.9597772277227723
+    },
+    {
+      "params": {
+        "C": 10.0
+      },
+      "threshold": 0.005065458130269103,
+      "validation_balanced_accuracy": 0.8944925742574257,
+      "validation_roc_auc": 0.9499793729372937
+    }
+  ],
+  "n_features": 200,
+  "train_rows": 1002,
+  "validation_rows": 250,
+  "test_used_for_selection": false
+}

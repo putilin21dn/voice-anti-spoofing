@@ -1,0 +1,212 @@
+{
+  "calls": 1496,
+  "duplicate_call_ids": 0,
+  "label_mismatch": 0,
+  "missing_split": 10,
+  "split_counts": {
+    "train": 1002,
+    "validation": 251,
+    "spectra_threshold": 190,
+    "test": 43,
+    "nan": 10
+  },
+  "unreadable": 10,
+  "unknown": 0,
+  "status": {
+    "ok": 1485,
+    "error": 10,
+    "insufficient_speech": 1
+  },
+  "locked_overlap": {
+    "train": [],
+    "validation": [],
+    "test": [],
+    "spectra_threshold": []
+  },
+  "calls_without_usable_segments": 11,
+  "top_label_association_train": [
+    {
+      "feature": "mfcc_static_00_mean__mean",
+      "corr_machine": 0.49702016577715213,
+      "corr_speech_duration": -0.0577903906735193,
+      "corr_recording_duration": -0.009680786947912084
+    },
+    {
+      "feature": "lfcc_static_00_mean__mean",
+      "corr_machine": 0.4951721887105469,
+      "corr_speech_duration": -0.05362003711022374,
+      "corr_recording_duration": -0.02619224519017029
+    },
+    {
+      "feature": "mfcc_delta2_00_max__mean",
+      "corr_machine": 0.47747278988886305,
+      "corr_speech_duration": -0.02066124617712495,
+      "corr_recording_duration": 0.006678028061742779
+    },
+    {
+      "feature": "mfcc_delta_06_max__mean",
+      "corr_machine": 0.45893275636395153,
+      "corr_speech_duration": 0.0355229062857918,
+      "corr_recording_duration": -0.010385937979628368
+    },
+    {
+      "feature": "cqcc_static_00_mean__mean",
+      "corr_machine": 0.4587694829097211,
+      "corr_speech_duration": -0.05006434234876187,
+      "corr_recording_duration": -0.02398192216606922
+    },
+    {
+      "feature": "f0_voiced_fraction__mean",
+      "corr_machine": 0.4487276367078844,
+      "corr_speech_duration": -0.08193659535861182,
+      "corr_recording_duration": 0.0952462096118429
+    },
+    {
+      "feature": "mfcc_delta_00_min__mean",
+      "corr_machine": -0.4454763174128204,
+      "corr_speech_duration": -0.00439527070150814,
+      "corr_recording_duration": -0.0858107599581769
+    },
+    {
+      "feature": "mfcc_delta2_00_std__mean",
+      "corr_machine": 0.4274133311342128,
+      "corr_speech_duration": -0.09313179908425433,
+      "corr_recording_duration": 0.07302116993156597
+    },
+    {
+      "feature": "mfcc_delta_06_std__mean",
+      "corr_machine": 0.42561289389018153,
+      "corr_speech_duration": -0.05029824192503775,
+      "corr_recording_duration": 0.0526348076219917
+    },
+    {
+      "feature": "mfcc_static_11_max__mean",
+      "corr_machine": 0.42131635724257016,
+      "corr_speech_duration": 0.03744291407344869,
+      "corr_recording_duration": -0.065627428600591
+    },
+    {
+      "feature": "cqcc_delta2_12_max__mean",
+      "corr_machine": 0.4050523399876479,
+      "corr_speech_duration": 0.07859810398886215,
+      "corr_recording_duration": 0.040716655904465576
+    },
+    {
+      "feature": "mfcc_delta2_06_std__mean",
+      "corr_machine": 0.4042823522023159,
+      "corr_speech_duration": -0.04598842452279688,
+      "corr_recording_duration": 0.02977855273194997
+    },
+    {
+      "feature": "cqcc_delta_10_max__mean",
+      "corr_machine": 0.4036423099413985,
+      "corr_speech_duration": 0.03933790359155347,
+      "corr_recording_duration": -0.006273687390758974
+    },
+    {
+      "feature": "cqcc_delta2_12_min__mean",
+      "corr_machine": -0.40192901840355866,
+      "corr_speech_duration": -0.07094665666486386,
+      "corr_recording_duration": -0.05096636295547469
+    },
+    {
+      "feature": "cqcc_delta2_01_std__mean",
+      "corr_machine": 0.3993015183894182,
+      "corr_speech_duration": -0.08846646187661904,
+      "corr_recording_duration": 0.09660189535049109
+    },
+    {
+      "feature": "cqcc_delta2_05_min__mean",
+      "corr_machine": -0.39854024668496446,
+      "corr_speech_duration": -0.057894580966348114,
+      "corr_recording_duration": 0.014427410997333355
+    },
+    {
+      "feature": "lfcc_delta2_00_std__mean",
+      "corr_machine": 0.39686951023133044,
+      "corr_speech_duration": -0.11208552630960954,
+      "corr_recording_duration": 0.02780674396299289
+    },
+    {
+      "feature": "cqcc_delta_12_max__mean",
+      "corr_machine": 0.3967307698389528,
+      "corr_speech_duration": 0.07555373094979068,
+      "corr_recording_duration": 0.0566051551641811
+    },
+    {
+      "feature": "mfcc_delta_04_max__mean",
+      "corr_machine": 0.39338073286783315,
+      "corr_speech_duration": 0.010597689821203021,
+      "corr_recording_duration": -0.025373889532188446
+    },
+    {
+      "feature": "cqcc_delta_01_min__mean",
+      "corr_machine": -0.39329100429742164,
+      "corr_speech_duration": 0.0029799706619020195,
+      "corr_recording_duration": -0.03664073834787934
+    },
+    {
+      "feature": "mfcc_delta2_06_min__mean",
+      "corr_machine": -0.3908991736028535,
+      "corr_speech_duration": -0.05503483359911621,
+      "corr_recording_duration": 0.020726849002228796
+    },
+    {
+      "feature": "zero_crossing_rate_mean__mean",
+      "corr_machine": -0.38724041337052334,
+      "corr_speech_duration": 0.028270719804279143,
+      "corr_recording_duration": -0.07642271052657083
+    },
+    {
+      "feature": "cqcc_delta2_10_max__mean",
+      "corr_machine": 0.3859933206377611,
+      "corr_speech_duration": 0.06070425085718741,
+      "corr_recording_duration": -0.003120472950400521
+    },
+    {
+      "feature": "mfcc_delta_00_std__mean",
+      "corr_machine": 0.38347924934358857,
+      "corr_speech_duration": -0.10234924301386612,
+      "corr_recording_duration": 0.100513003067491
+    },
+    {
+      "feature": "cqcc_delta2_00_std__mean",
+      "corr_machine": 0.3832603170628769,
+      "corr_speech_duration": -0.11161453584305897,
+      "corr_recording_duration": 0.037852018492203154
+    },
+    {
+      "feature": "mfcc_delta_11_min__mean",
+      "corr_machine": -0.379022497748837,
+      "corr_speech_duration": -0.020340903387394305,
+      "corr_recording_duration": 0.06563735758084041
+    },
+    {
+      "feature": "cqcc_delta2_10_min__mean",
+      "corr_machine": -0.3756937016533015,
+      "corr_speech_duration": -0.06332140901867074,
+      "corr_recording_duration": -0.013854874390977334
+    },
+    {
+      "feature": "cqcc_delta2_11_min__mean",
+      "corr_machine": -0.3737368971133981,
+      "corr_speech_duration": -0.08745530266828928,
+      "corr_recording_duration": -0.019944370280689194
+    },
+    {
+      "feature": "mfcc_delta2_06_max__mean",
+      "corr_machine": 0.37313570635995796,
+      "corr_speech_duration": 0.05118545731618213,
+      "corr_recording_duration": -0.01569660683410302
+    },
+    {
+      "feature": "spectral_centroid_hz_mean__mean",
+      "corr_machine": -0.3715453093035747,
+      "corr_speech_duration": 0.05579503385359391,
+      "corr_recording_duration": -0.0633859410786611
+    }
+  ],
+  "stronger_duration_than_label": [],
+  "nan_fraction_train_mean_features": 2.5474576372779965e-05,
+  "note": "Ассоциации посчитаны только на train. Длительность и SNR не входят в признаки модели. Высокая корреляция не означает, что признак вызван синтезом."
+}

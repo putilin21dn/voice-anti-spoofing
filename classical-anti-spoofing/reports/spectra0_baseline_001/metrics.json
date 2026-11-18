@@ -1,0 +1,80 @@
+{
+  "n100": {
+    "human": 91,
+    "machine": 99,
+    "tp": 70,
+    "fn": 29,
+    "tn": 79,
+    "fp": 12,
+    "recall_synthetic": 0.7070707070707071,
+    "specificity_human": 0.8681318681318682,
+    "precision_synthetic": 0.8536585365853658,
+    "f1_synthetic": 0.7734806629834254,
+    "balanced_accuracy": 0.7876012876012877,
+    "fpr": 0.13186813186813187,
+    "fnr": 0.29292929292929293,
+    "confusion_matrix_labels": [
+      "human",
+      "machine"
+    ],
+    "confusion_matrix": [
+      [
+        79,
+        12
+      ],
+      [
+        29,
+        70
+      ]
+    ],
+    "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+    "roc_auc": 0.8263958263958264,
+    "pr_auc": 0.8683374859260062,
+    "threshold": 1.02,
+    "decision": "machine, если средний зазор bonafide_logit - spoof_logit меньше порога",
+    "aggregation": "среднее по всем окнам со status=ok, включая короткие добитые хвосты",
+    "unlabeled": 0,
+    "calls": 190,
+    "source": "C:\\Users\\dmitry\\Documents\\project\\voice-anti-spoofing-spectra0\\data\\output\\spectra0_results.csv",
+    "caution": "На этом наборе выбирался порог Spectra-0. Метрики здесь не являются независимым тестом."
+  },
+  "test20": {
+    "human": 18,
+    "machine": 25,
+    "tp": 17,
+    "fn": 8,
+    "tn": 17,
+    "fp": 1,
+    "recall_synthetic": 0.68,
+    "specificity_human": 0.9444444444444444,
+    "precision_synthetic": 0.9444444444444444,
+    "f1_synthetic": 0.7906976744186046,
+    "balanced_accuracy": 0.8122222222222222,
+    "fpr": 0.05555555555555555,
+    "fnr": 0.32,
+    "confusion_matrix_labels": [
+      "human",
+      "machine"
+    ],
+    "confusion_matrix": [
+      [
+        17,
+        1
+      ],
+      [
+        8,
+        17
+      ]
+    ],
+    "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+    "roc_auc": 0.8466666666666667,
+    "pr_auc": 0.9150192173597748,
+    "threshold": 1.02,
+    "decision": "machine, если средний зазор bonafide_logit - spoof_logit меньше порога",
+    "aggregation": "среднее по всем окнам со status=ok, включая короткие добитые хвосты",
+    "unlabeled": 0,
+    "calls": 43,
+    "source": "C:\\Users\\dmitry\\Documents\\project\\voice-anti-spoofing-spectra0\\data\\output\\spectra0_test20_results.csv",
+    "caution": "Независимый test20. Порог на нём не подбирался."
+  }
+}

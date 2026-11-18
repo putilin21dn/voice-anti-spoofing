@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; media-src 'self'; img-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'">
+  <title>Ваша часть прослушивания</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 15px/1.45 "Segoe UI", sans-serif; color: #1d1a16; background: #f3efe6; }
+    header { display: flex; justify-content: space-between; gap: 16px; padding: 14px 18px; background: #243126; color: #f6f3ec; }
+    header p { margin: 4px 0 0; color: #d5dccf; }
+    .counts { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .counts span { background: #314438; border-radius: 999px; padding: 4px 10px; }
+    .layout { display: grid; grid-template-columns: 340px 1fr; min-height: calc(100vh - 78px); }
+    aside { border-right: 1px solid #ddd4c4; background: #faf7f1; overflow: auto; }
+    .filters { padding: 12px; display: grid; gap: 8px; }
+    label { display: grid; gap: 4px; font-size: 13px; }
+    input, select, textarea, button { font: inherit; }
+    input, select, textarea { width: 100%; padding: 6px 8px; border: 1px solid #cabbA4; border-radius: 6px; background: #fff; }
+    input[type="checkbox"] { width: auto; }
+    label:has(input[type="checkbox"]) { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+    button { padding: 8px 10px; border: 1px solid #243126; border-radius: 6px; background: #243126; color: #fff; cursor: pointer; }
+    button.secondary { background: #fff; color: #243126; }
+    button.choice { background: #fff; color: #243126; text-align: left; }
+    button.choice.active { background: #243126; color: #fff; }
+    button:disabled { opacity: 0.45; cursor: default; }
+    #call-list { list-style: none; margin: 0; padding: 0 8px 20px; }
+    #call-list button { width: 100%; text-align: left; background: transparent; color: inherit; border-color: transparent; display: grid; gap: 2px; }
+    #call-list button.active { background: #e7f0e4; border-color: #8eaa86; }
+    .badge { display: inline-block; min-width: 1.4em; text-align: center; border-radius: 4px; padding: 0 6px; font-weight: 700; }
+    .badge.A { background: #f3d2c8; }
+    .badge.B { background: #d9e4f5; }
+    .badge.C { background: #f6e3b5; }
+    .badge.D { background: #d7ead4; }
+    main { padding: 16px 18px 48px; }
+    .banner { background: #fff8e8; border: 1px solid #e2c98a; border-radius: 8px; padding: 10px 12px; }
+    .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 12px 0; }
+    .facts div, .model { background: #fff; border-radius: 8px; padding: 8px 10px; }
+    .facts span, .model span { display: block; color: #665e54; font-size: 12px; }
+    .player { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 8px 0 14px; }
+    audio { width: min(560px, 100%); }
+    .choices, .confidence { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+    .wide { grid-column: 1 / -1; }
+    form { display: grid; gap: 10px; }
+    #message { min-height: 1.4em; }
+    #message.error { color: #8d1d1d; }
+    #message.ok { color: #1d5a32; }
+    #models { display: none; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+    #models.open { display: grid; }
+    @media (max-width: 980px) {
+      .layout, .facts, #models { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <strong>Ваша часть, 11–12 ноября</strong>
+      <p>Слушайте сверху вниз: A, затем C, затем B, затем D. Имя впишите один раз и не меняйте. Обратно нужны только annotations.csv и segments.csv.</p>
+    </div>
+    <div class="counts" id="counts"></div>
+  </header>
+  <div class="layout">
+    <aside>
+      <div class="filters">
+        <label>Разметчик
+          <input id="annotator" maxlength="32" placeholder="имя латиницей, один раз">
+        </label>
+        <label>Очередь
+          <select id="queue-filter">
+            <option value="">все приоритеты</option>
+            <option value="A">A — расхождения</option>
+            <option value="C">C — технически сложные</option>
+            <option value="B">B — пограничные</option>
+            <option value="D">D — контроль</option>
+          </select>
+        </label>
+        <label>День
+          <select id="day-filter">
+            <option value="">оба дня</option>
+            <option value="2026-11-11">11 ноября</option>
+            <option value="2026-11-12">12 ноября</option>
+          </select>
+        </label>
+        <label>Кампания
+          <select id="campaign-filter">
+            <option value="">обе</option>
+            <option value="PACK1">PACK1</option>
+            <option value="PACK2">PACK2</option>
+          </select>
+        </label>
+        <label>Статус
+          <select id="status-filter">
+            <option value="unreviewed">ещё не слушали</option>
+            <option value="">все</option>
+            <option value="reviewed">сохранено</option>
+            <option value="needs_second_review">нужна вторая проверка</option>
+          </select>
+        </label>
+        <p id="list-count"></p>
+      </div>
+      <ul id="call-list"></ul>
+    </aside>
+    <main>
+      <p class="banner">Слушайте канал абонента. Голос робота на другом канале не делает звонок синтетическим. Оценок моделей в этой части нет.</p>
+      <h2 id="title">Выберите звонок</h2>
+      <div class="facts" id="facts"></div>
+      <div class="player">
+        <button id="play-client" type="button">Канал абонента</button>
+        <button id="play-robot" class="secondary" type="button">Канал робота</button>
+        <button id="play-mix" class="secondary" type="button">Оба канала</button>
+        <audio id="player" controls preload="none"></audio>
+      </div>
+      <form id="form">
+        <div>
+          <div>Происхождение речи абонента</div>
+          <div class="choices" id="labels"></div>
+        </div>
+        <div>
+          <div>Уверенность</div>
+          <div class="confidence" id="confidence"></div>
+        </div>
+        <label>Дополнительный признак
+          <select id="secondary">
+            <option value="">нет</option>
+            <option value="ai_secretary">ai_secretary, только вместе с синтетикой</option>
+            <option value="voicemail">voicemail</option>
+            <option value="anti_spam">anti_spam</option>
+            <option value="greeting_only">greeting_only</option>
+          </select>
+        </label>
+        <label class="wide">Заметка
+          <textarea id="notes" rows="3" maxlength="4000"></textarea>
+        </label>
+        <label><input id="doubtful" type="checkbox"> Сомневаюсь, нужна вторая проверка</label>
+        <div class="player">
+          <button id="save-next" type="button">Сохранить и следующий</button>
+        </div>
+        <p id="message"></p>
+      </form>
+    </main>
+  </div>
+  <script>
+    const LABELS = [
+      ["human_live", "Живой человек"],
+      ["human_recorded", "Запись человека"],
+      ["synthetic_tts", "Синтетика TTS"],
+      ["synthetic_voice_conversion", "Подмена голоса"],
+      ["synthetic_playback", "Синтетика через динамик"],
+      ["mixed", "Смешанный"],
+      ["unknown", "Неясно"]
+    ];
+    const CONFIDENCE = [["high", "высокая"], ["medium", "средняя"], ["low", "низкая"]];
+    const state = { calls: [], current: null, primary: "", confidence: "medium", dirty: false };
+
+    const annotatorInput = document.querySelector("#annotator");
+    annotatorInput.value = localStorage.getItem("ssd-share-annotator") || "";
+    const annotator = () => annotatorInput.value.trim();
+
+    function pack(name) {
+      if ((name || "").endsWith("PACK1")) return "PACK1";
+      if ((name || "").endsWith("PACK2")) return "PACK2";
+      return name || "";
+    }
+
+    function visibleCalls() {
+      const queue = document.querySelector("#queue-filter").value;
+      const day = document.querySelector("#day-filter").value;
+      const campaign = document.querySelector("#campaign-filter").value;
+      const status = document.querySelector("#status-filter").value;
+      return state.calls.filter((call) => {
+        if (queue && !(call.queues || "").split("|").includes(queue)) return false;
+        if (day && call.date !== day) return false;
+        if (campaign && pack(call.campaign) !== campaign) return false;
+        const review = call.review_status || "unreviewed";
+        if (status && review !== status) return false;
+        return true;
+      });
+    }
+
+    function renderCounts() {
+      const host = document.querySelector("#counts");
+      host.replaceChildren();
+      for (const letter of ["A", "C", "B", "D"]) {
+        const rows = state.calls.filter((call) => (call.queues || "").split("|").includes(letter));
+        const left = rows.filter((call) => (call.review_status || "unreviewed") === "unreviewed").length;
+        const badge = document.createElement("span");
+        badge.textContent = `${letter}: ${left} из ${rows.length}`;
+        host.append(badge);
+      }
+    }
+
+    function renderList() {
+      const list = document.querySelector("#call-list");
+      const visible = visibleCalls();
+      document.querySelector("#list-count").textContent = `${visible.length} в списке`;
+      list.replaceChildren();
+      for (const call of visible) {
+        const item = document.createElement("li");
+        const button = document.createElement("button");
+        button.type = "button";
+        button.dataset.id = call.call_id;
+        if (state.current && state.current.call_id === call.call_id) button.className = "active";
+        const title = document.createElement("span");
+        for (const letter of (call.queues || call.review_priority || "").split("|").filter(Boolean)) {
+          const badge = document.createElement("span");
+          badge.className = `badge ${letter}`;
+          badge.textContent = letter;
+          title.append(badge, " ");
+        }
+        title.append(`${call.date.slice(8)} · ${pack(call.campaign)} · ${Number(call.duration_seconds).toFixed(0)} с`);
+        const reason = document.createElement("small");
+        reason.textContent = `${call.public_reasons || ""} · ${call.review_status === "reviewed" ? "сохранено" : "не слушали"}`;
+        button.append(title, reason);
+        item.append(button);
+        list.append(item);
+      }
+      renderCounts();
+    }
+
+    function fact(name, value) {
+      const block = document.createElement("div");
+      const label = document.createElement("span");
+      label.textContent = name;
+      block.append(label, document.createTextNode(value || "—"));
+      return block;
+    }
+
+    function setPressed(container, value) {
+      container.querySelectorAll("button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.value === value);
+      });
+    }
+
+    function show(call) {
+      state.current = call;
+      state.primary = call.primary_label && call.updated_at ? call.primary_label : "";
+      state.confidence = call.label_confidence || "medium";
+      state.dirty = false;
+      document.querySelector("#title").textContent = call.call_id;
+      document.querySelector("#facts").replaceChildren(
+        fact("Приоритет", call.review_priority),
+        fact("Почему в очереди", call.public_reasons),
+        fact("Дата", call.date),
+        fact("Кампания", pack(call.campaign)),
+        fact("Длительность записи", `${Number(call.duration_seconds).toFixed(1)} с`),
+        fact("Длительность речи", call.speech_duration_s ? `${Number(call.speech_duration_s).toFixed(1)} с` : "—"),
+        fact("Речевые сегменты", call.n_segments || "—"),
+        fact("Окна Spectra-0", call.n_windows || "—"),
+        fact("Доля повтора в окнах", call.padding_ratio || "—"),
+        fact("Обработка", [call.spectra_status, call.classical_status].filter(Boolean).join(" / ") || "—")
+      );
+      document.querySelector("#secondary").value = call.secondary_label || "";
+      document.querySelector("#notes").value = call.annotation_notes || "";
+      document.querySelector("#doubtful").checked = call.review_status === "needs_second_review";
+      setPressed(document.querySelector("#labels"), state.primary);
+      setPressed(document.querySelector("#confidence"), state.primary === "unknown" ? "" : state.confidence);
+      document.querySelector("#message").textContent = "";
+      const audio = document.querySelector("#player");
+      audio.pause();
+      audio.src = `/api/audio/${call.call_id}?channel=${call.client_channel || "0"}`;
+      renderList();
+    }
+
+    async function loadQueue() {
+      const response = await fetch("/api/queue?annotator=" + encodeURIComponent(annotator()));
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || "Очередь не открылась");
+      state.calls = payload.calls || [];
+      renderList();
+    }
+
+    async function openCall(callId) {
+      if (state.dirty && !window.confirm("Есть несохранённые изменения. Перейти к другому звонку?")) return;
+      const call = state.calls.find((item) => item.call_id === callId);
+      if (!call) return;
+      show(call);
+    }
+
+    function play(channel) {
+      if (!state.current) return;
+      const audio = document.querySelector("#player");
+      audio.src = `/api/audio/${state.current.call_id}?channel=${channel}`;
+      audio.play();
+    }
+
+    function payload() {
+      const primary = state.primary;
+      const unknown = primary === "unknown";
+      let reviewStatus = document.querySelector("#doubtful").checked ? "needs_second_review" : "reviewed";
+      return {
+        primary_label: primary,
+        secondary_label: document.querySelector("#secondary").value,
+        label_confidence: unknown ? "" : state.confidence,
+        label_source: unknown ? "unknown_source" : "manual_listening",
+        review_status: reviewStatus,
+        annotation_notes: document.querySelector("#notes").value,
+        annotator_id: annotator(),
+        segments: []
+      };
+    }
+
+    async function save() {
+      const message = document.querySelector("#message");
+      if (!state.current) return;
+      if (!annotator()) {
+        message.className = "error";
+        message.textContent = "Сначала впишите имя латиницей.";
+        return;
+      }
+      if (!state.primary) {
+        message.className = "error";
+        message.textContent = "Сначала выберите происхождение речи.";
+        return;
+      }
+      message.className = "";
+      message.textContent = "Сохраняю…";
+      const response = await fetch("/api/calls/" + state.current.call_id, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload())
+      });
+      const body = await response.json();
+      if (!response.ok) {
+        message.className = "error";
+        message.textContent = body.error || "Не сохранилось";
+        return;
+      }
+      state.dirty = false;
+      const currentSort = Number(state.current.sort_index);
+      await loadQueue();
+      const visible = visibleCalls();
+      const next = visible.find((call) => Number(call.sort_index) > currentSort) || visible[0];
+      if (next && next.call_id !== state.current.call_id) {
+        show(next);
+        return;
+      }
+      message.className = "ok";
+      message.textContent = "Метка сохранена. В текущем фильтре следующих звонков нет.";
+    }
+
+    function buildChoices(container, pairs, onPick) {
+      for (const [value, title] of pairs) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "choice";
+        button.dataset.value = value;
+        button.textContent = title;
+        button.addEventListener("click", () => onPick(value));
+        container.append(button);
+      }
+    }
+
+    buildChoices(document.querySelector("#labels"), LABELS, (value) => {
+      state.primary = value;
+      state.dirty = true;
+      setPressed(document.querySelector("#labels"), value);
+      if (value === "unknown") {
+        state.confidence = "";
+        setPressed(document.querySelector("#confidence"), "");
+      } else if (!state.confidence) {
+        state.confidence = "medium";
+        setPressed(document.querySelector("#confidence"), state.confidence);
+      }
+    });
+    buildChoices(document.querySelector("#confidence"), CONFIDENCE, (value) => {
+      if (state.primary === "unknown") return;
+      state.confidence = value;
+      state.dirty = true;
+      setPressed(document.querySelector("#confidence"), value);
+    });
+
+    document.querySelector("#call-list").addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-id]");
+      if (button) openCall(button.dataset.id);
+    });
+    for (const id of ["queue-filter", "day-filter", "campaign-filter", "status-filter"]) {
+      document.querySelector("#" + id).addEventListener("change", renderList);
+    }
+    annotatorInput.addEventListener("change", () => {
+      localStorage.setItem("ssd-share-annotator", annotator());
+      loadQueue().catch((error) => alert(error.message));
+    });
+    document.querySelector("#form").addEventListener("input", () => { state.dirty = true; });
+    document.querySelector("#save-next").addEventListener("click", () => save());
+    document.querySelector("#play-client").addEventListener("click", () => play(state.current ? state.current.client_channel || "0" : "0"));
+    document.querySelector("#play-robot").addEventListener("click", () => play((state.current && state.current.client_channel === "1") ? "0" : "1"));
+    document.querySelector("#play-mix").addEventListener("click", () => play("mix"));
+    document.addEventListener("keydown", (event) => {
+      if (event.code === "Space" && event.target.tagName !== "TEXTAREA" && event.target.tagName !== "INPUT") {
+        event.preventDefault();
+        const audio = document.querySelector("#player");
+        if (!state.current) return;
+        if (audio.paused) play(state.current.client_channel || "0");
+        else audio.pause();
+      }
+    });
+    loadQueue().then(() => {
+      const first = visibleCalls()[0];
+      if (first) show(first);
+    }).catch((error) => alert(error.message));
+  </script>
+</body>
+</html>

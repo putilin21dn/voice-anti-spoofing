@@ -1,0 +1,87 @@
+{
+  "variant": "full",
+  "models_overwritten": false,
+  "feature_lists_identical": true,
+  "selection_split": "validation",
+  "held_out_splits": [
+    "test",
+    "spectra_threshold"
+  ],
+  "svm_permutations": 5,
+  "additivity": [
+    {
+      "model": "logistic",
+      "split": "validation",
+      "method": "linear_scaled_train_mean",
+      "rows": 250,
+      "features": 200,
+      "max_additivity_error": 7.105427357601002e-15
+    },
+    {
+      "model": "logistic",
+      "split": "test",
+      "method": "linear_scaled_train_mean",
+      "rows": 43,
+      "features": 200,
+      "max_additivity_error": 5.329070518200751e-15
+    },
+    {
+      "model": "logistic",
+      "split": "spectra_threshold",
+      "method": "linear_scaled_train_mean",
+      "rows": 190,
+      "features": 200,
+      "max_additivity_error": 1.0658141036401503e-14
+    },
+    {
+      "model": "svm",
+      "split": "validation",
+      "method": "permutation_5_vs_train_median",
+      "rows": 250,
+      "features": 200,
+      "max_additivity_error": 1.246371738705676e-06
+    },
+    {
+      "model": "svm",
+      "split": "test",
+      "method": "permutation_5_vs_train_median",
+      "rows": 43,
+      "features": 200,
+      "max_additivity_error": 4.440892098500626e-16
+    },
+    {
+      "model": "svm",
+      "split": "spectra_threshold",
+      "method": "permutation_5_vs_train_median",
+      "rows": 190,
+      "features": 200,
+      "max_additivity_error": 1.0731640687211552e-08
+    },
+    {
+      "model": "lightgbm",
+      "split": "validation",
+      "method": "lightgbm_pred_contrib",
+      "rows": 250,
+      "features": 200,
+      "max_additivity_error": 1.2434497875801753e-14
+    },
+    {
+      "model": "lightgbm",
+      "split": "test",
+      "method": "lightgbm_pred_contrib",
+      "rows": 43,
+      "features": 200,
+      "max_additivity_error": 8.881784197001252e-15
+    },
+    {
+      "model": "lightgbm",
+      "split": "spectra_threshold",
+      "method": "lightgbm_pred_contrib",
+      "rows": 190,
+      "features": 200,
+      "max_additivity_error": 1.2434497875801753e-14
+    }
+  ],
+  "elapsed_s": 182.9,
+  "note": "Вклад посчитан на марже модели: log-odds у логистической регрессии и LightGBM, decision_function у SVM. Это не калиброванная вероятность. Повторное обучение использует параметры уже выбранной модели и заново выбирает порог на validation."
+}

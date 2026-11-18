@@ -1,0 +1,174 @@
+{
+  "segments": 147,
+  "usable_segments": 78,
+  "calls": 16,
+  "by_label": {
+    "human": {
+      "calls": 8,
+      "segments": 117,
+      "usable_segments": 52,
+      "speech_duration_s_median": 10.770000000000001,
+      "recording_duration_s_median": 25.3738125,
+      "speech_ratio_median": 0.425497505595121,
+      "snr_db_median": 48.375599535802124
+    },
+    "machine": {
+      "calls": 8,
+      "segments": 30,
+      "usable_segments": 26,
+      "speech_duration_s_median": 5.539999999999999,
+      "recording_duration_s_median": 30.119437499999997,
+      "speech_ratio_median": 0.3044976531164592,
+      "snr_db_median": 32.692637155798074
+    }
+  },
+  "coverage": {
+    "lfcc_": {
+      "columns": 240,
+      "finite_fraction": 1.0
+    },
+    "mfcc_": {
+      "columns": 240,
+      "finite_fraction": 1.0
+    },
+    "cqcc_": {
+      "columns": 156,
+      "finite_fraction": 1.0
+    },
+    "f0_": {
+      "columns": 6,
+      "finite_fraction": 0.9038461538461539
+    },
+    "jitter_": {
+      "columns": 1,
+      "finite_fraction": 0.9743589743589743
+    },
+    "shimmer_": {
+      "columns": 1,
+      "finite_fraction": 0.9743589743589743
+    },
+    "hnr_": {
+      "columns": 1,
+      "finite_fraction": 1.0
+    },
+    "acf_": {
+      "columns": 1,
+      "finite_fraction": 1.0
+    },
+    "spectral_": {
+      "columns": 16,
+      "finite_fraction": 1.0
+    },
+    "zero_": {
+      "columns": 4,
+      "finite_fraction": 1.0
+    }
+  },
+  "sample_rates": [
+    8000
+  ],
+  "resample_actions": {
+    "native": 147
+  },
+  "physical": {
+    "f0_median": {
+      "finite": 69,
+      "min": 60.0,
+      "median": 188.3033248022418,
+      "max": 389.8811502509931
+    },
+    "spectral_centroid_hz_mean": {
+      "finite": 78,
+      "min": 487.6449444110577,
+      "median": 729.5851401182639,
+      "max": 1433.4093045009656
+    },
+    "spectral_rolloff_hz_mean": {
+      "finite": 78,
+      "min": 636.1434108527131,
+      "median": 1263.5225627945565,
+      "max": 2501.4044943820227
+    },
+    "zero_crossing_rate_mean": {
+      "finite": 78,
+      "min": 0.07052238805970149,
+      "median": 0.13504349653409486,
+      "max": 0.34278846153846154
+    },
+    "spectral_flatness_mean": {
+      "finite": 78,
+      "min": 0.002383382713124782,
+      "median": 0.017318787718788472,
+      "max": 0.15769949876370706
+    },
+    "acf_harmonicity_mean": {
+      "finite": 78,
+      "min": 0.22792845130884207,
+      "median": 0.44129814461068223,
+      "max": 0.8268154516235854
+    },
+    "hnr_praat_db": {
+      "finite": 78,
+      "min": -2.07666632890835,
+      "median": 11.563466258956147,
+      "max": 40.03431714620039
+    },
+    "problems": []
+  },
+  "flags": {
+    "flag_insufficient_duration": 0.40816326530612246,
+    "flag_low_energy": 0.2108843537414966,
+    "flag_low_snr": 0.0,
+    "flag_snr_unavailable": 0.0,
+    "flag_nonfinite": 0.0,
+    "flag_delta_unavailable": 0.0,
+    "flag_unvoiced": 0.061224489795918366,
+    "flag_voice_quality_8khz_limited": 0.5306122448979592,
+    "flag_voice_quality_unavailable": 0.0,
+    "flag_lfcc_error": 0.0,
+    "flag_mfcc_error": 0.0,
+    "flag_cqcc_error": 0.0,
+    "flag_cqcc_disabled": 0.0,
+    "flag_pitch_error": 0.0,
+    "flag_spectral_error": 0.0,
+    "flag_partial_features": 0.0
+  },
+  "synthetic_checks": [
+    {
+      "name": "fmax_above_nyquist",
+      "passed": true,
+      "detail": "частота выше Найквиста отклонена"
+    },
+    {
+      "name": "no_upsample",
+      "passed": true,
+      "detail": "upsample_refused_native_kept"
+    },
+    {
+      "name": "vad_does_not_bridge_gap",
+      "passed": true,
+      "detail": "[(0.0, 0.04), (0.7, 0.74)]"
+    },
+    {
+      "name": "short_segment_kept",
+      "passed": true,
+      "detail": "[(0.0, 0.02)]"
+    },
+    {
+      "name": "sine_200hz",
+      "passed": true,
+      "detail": "ok"
+    },
+    {
+      "name": "lfcc_filterbank_band",
+      "passed": true,
+      "detail": "bins=129"
+    }
+  ],
+  "status": {
+    "ok": 16
+  },
+  "processing_ms_sum": 8858.1,
+  "processing_ms_median": 230.15,
+  "errors": 0
+}

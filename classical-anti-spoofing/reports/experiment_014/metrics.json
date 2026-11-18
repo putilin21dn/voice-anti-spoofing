@@ -1,0 +1,81 @@
+{
+  "model": "logistic",
+  "split": "validation",
+  "threshold": 0.5,
+  "params": {
+    "C": 1.0
+  },
+  "metrics": {
+    "human": 202,
+    "machine": 48,
+    "tp": 47,
+    "fn": 1,
+    "tn": 186,
+    "fp": 16,
+    "recall_synthetic": 0.9791666666666666,
+    "specificity_human": 0.9207920792079208,
+    "precision_synthetic": 0.746031746031746,
+    "f1_synthetic": 0.8468468468468469,
+    "balanced_accuracy": 0.9499793729372937,
+    "fpr": 0.07920792079207921,
+    "fnr": 0.020833333333333332,
+    "confusion_matrix_labels": [
+      "human",
+      "machine"
+    ],
+    "confusion_matrix": [
+      [
+        186,
+        16
+      ],
+      [
+        1,
+        47
+      ]
+    ],
+    "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+    "roc_auc": 0.9724628712871287,
+    "pr_auc": 0.8500223578200617
+  },
+  "candidates": [
+    {
+      "params": {
+        "C": 0.01
+      },
+      "threshold": 0.5,
+      "validation_balanced_accuracy": 0.9247112211221122,
+      "validation_roc_auc": 0.9677186468646866
+    },
+    {
+      "params": {
+        "C": 0.1
+      },
+      "threshold": 0.5,
+      "validation_balanced_accuracy": 0.9395627062706271,
+      "validation_roc_auc": 0.9707095709570956
+    },
+    {
+      "params": {
+        "C": 1.0
+      },
+      "threshold": 0.5,
+      "validation_balanced_accuracy": 0.9499793729372937,
+      "validation_roc_auc": 0.9724628712871287
+    },
+    {
+      "params": {
+        "C": 10.0
+      },
+      "threshold": 0.5,
+      "validation_balanced_accuracy": 0.9475041254125413,
+      "validation_roc_auc": 0.9723597359735974
+    }
+  ],
+  "n_features": 67,
+  "train_rows": 1002,
+  "validation_rows": 250,
+  "test_used_for_selection": false,
+  "variant": "voicing",
+  "excluded_log_energy": 4592,
+  "exclusion_rule": "Оставлены F0, доля озвученных кадров, автокорреляционная гармоничность, jitter, shimmer и HNR. Кепстр и спектр убраны до отбора."
+}

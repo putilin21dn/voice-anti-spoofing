@@ -1,0 +1,686 @@
+{
+  "calls": 1496,
+  "duplicate_call_ids": 0,
+  "label_mismatch": 0,
+  "missing_split": 10,
+  "split_counts": {
+    "train": 1002,
+    "validation": 251,
+    "spectra_threshold": 190,
+    "test": 43,
+    "nan": 10
+  },
+  "unreadable": 10,
+  "unknown": 0,
+  "status": {
+    "ok": 1485,
+    "error": 10,
+    "insufficient_speech": 1
+  },
+  "locked_overlap": {
+    "train": [],
+    "validation": [],
+    "test": [],
+    "spectra_threshold": []
+  },
+  "calls_without_usable_segments": 11,
+  "top_label_association_train": [
+    {
+      "feature": "mfcc_static_00_mean__mean",
+      "corr_machine": 0.49702016577715213,
+      "corr_speech_duration": -0.0577903906735193,
+      "corr_recording_duration": -0.009680786947912084
+    },
+    {
+      "feature": "lfcc_static_00_mean__mean",
+      "corr_machine": 0.4951721887105469,
+      "corr_speech_duration": -0.05362003711022374,
+      "corr_recording_duration": -0.02619224519017029
+    },
+    {
+      "feature": "mfcc_delta2_00_max__mean",
+      "corr_machine": 0.47747278988886305,
+      "corr_speech_duration": -0.02066124617712495,
+      "corr_recording_duration": 0.006678028061742779
+    },
+    {
+      "feature": "mfcc_delta_06_max__mean",
+      "corr_machine": 0.45893275636395153,
+      "corr_speech_duration": 0.0355229062857918,
+      "corr_recording_duration": -0.010385937979628368
+    },
+    {
+      "feature": "cqcc_static_00_mean__mean",
+      "corr_machine": 0.4587694829097211,
+      "corr_speech_duration": -0.05006434234876187,
+      "corr_recording_duration": -0.02398192216606922
+    },
+    {
+      "feature": "f0_voiced_fraction__mean",
+      "corr_machine": 0.4487276367078844,
+      "corr_speech_duration": -0.08193659535861182,
+      "corr_recording_duration": 0.0952462096118429
+    },
+    {
+      "feature": "mfcc_delta_00_min__mean",
+      "corr_machine": -0.4454763174128204,
+      "corr_speech_duration": -0.00439527070150814,
+      "corr_recording_duration": -0.0858107599581769
+    },
+    {
+      "feature": "mfcc_delta2_00_std__mean",
+      "corr_machine": 0.4274133311342128,
+      "corr_speech_duration": -0.09313179908425433,
+      "corr_recording_duration": 0.07302116993156597
+    },
+    {
+      "feature": "mfcc_delta_06_std__mean",
+      "corr_machine": 0.42561289389018153,
+      "corr_speech_duration": -0.05029824192503775,
+      "corr_recording_duration": 0.0526348076219917
+    },
+    {
+      "feature": "mfcc_static_11_max__mean",
+      "corr_machine": 0.42131635724257016,
+      "corr_speech_duration": 0.03744291407344869,
+      "corr_recording_duration": -0.065627428600591
+    },
+    {
+      "feature": "cqcc_delta2_12_max__mean",
+      "corr_machine": 0.4050523399876479,
+      "corr_speech_duration": 0.07859810398886215,
+      "corr_recording_duration": 0.040716655904465576
+    },
+    {
+      "feature": "mfcc_delta2_06_std__mean",
+      "corr_machine": 0.4042823522023159,
+      "corr_speech_duration": -0.04598842452279688,
+      "corr_recording_duration": 0.02977855273194997
+    },
+    {
+      "feature": "cqcc_delta_10_max__mean",
+      "corr_machine": 0.4036423099413985,
+      "corr_speech_duration": 0.03933790359155347,
+      "corr_recording_duration": -0.006273687390758974
+    },
+    {
+      "feature": "cqcc_delta2_12_min__mean",
+      "corr_machine": -0.40192901840355866,
+      "corr_speech_duration": -0.07094665666486386,
+      "corr_recording_duration": -0.05096636295547469
+    },
+    {
+      "feature": "cqcc_delta2_01_std__mean",
+      "corr_machine": 0.3993015183894182,
+      "corr_speech_duration": -0.08846646187661904,
+      "corr_recording_duration": 0.09660189535049109
+    },
+    {
+      "feature": "cqcc_delta2_05_min__mean",
+      "corr_machine": -0.39854024668496446,
+      "corr_speech_duration": -0.057894580966348114,
+      "corr_recording_duration": 0.014427410997333355
+    },
+    {
+      "feature": "lfcc_delta2_00_std__mean",
+      "corr_machine": 0.39686951023133044,
+      "corr_speech_duration": -0.11208552630960954,
+      "corr_recording_duration": 0.02780674396299289
+    },
+    {
+      "feature": "cqcc_delta_12_max__mean",
+      "corr_machine": 0.3967307698389528,
+      "corr_speech_duration": 0.07555373094979068,
+      "corr_recording_duration": 0.0566051551641811
+    },
+    {
+      "feature": "mfcc_delta_04_max__mean",
+      "corr_machine": 0.39338073286783315,
+      "corr_speech_duration": 0.010597689821203021,
+      "corr_recording_duration": -0.025373889532188446
+    },
+    {
+      "feature": "cqcc_delta_01_min__mean",
+      "corr_machine": -0.39329100429742164,
+      "corr_speech_duration": 0.0029799706619020195,
+      "corr_recording_duration": -0.03664073834787934
+    },
+    {
+      "feature": "mfcc_delta2_06_min__mean",
+      "corr_machine": -0.3908991736028535,
+      "corr_speech_duration": -0.05503483359911621,
+      "corr_recording_duration": 0.020726849002228796
+    },
+    {
+      "feature": "zero_crossing_rate_mean__mean",
+      "corr_machine": -0.38724041337052334,
+      "corr_speech_duration": 0.028270719804279143,
+      "corr_recording_duration": -0.07642271052657083
+    },
+    {
+      "feature": "cqcc_delta2_10_max__mean",
+      "corr_machine": 0.3859933206377611,
+      "corr_speech_duration": 0.06070425085718741,
+      "corr_recording_duration": -0.003120472950400521
+    },
+    {
+      "feature": "mfcc_delta_00_std__mean",
+      "corr_machine": 0.38347924934358857,
+      "corr_speech_duration": -0.10234924301386612,
+      "corr_recording_duration": 0.100513003067491
+    },
+    {
+      "feature": "cqcc_delta2_00_std__mean",
+      "corr_machine": 0.3832603170628769,
+      "corr_speech_duration": -0.11161453584305897,
+      "corr_recording_duration": 0.037852018492203154
+    },
+    {
+      "feature": "mfcc_delta_11_min__mean",
+      "corr_machine": -0.379022497748837,
+      "corr_speech_duration": -0.020340903387394305,
+      "corr_recording_duration": 0.06563735758084041
+    },
+    {
+      "feature": "cqcc_delta2_10_min__mean",
+      "corr_machine": -0.3756937016533015,
+      "corr_speech_duration": -0.06332140901867074,
+      "corr_recording_duration": -0.013854874390977334
+    },
+    {
+      "feature": "cqcc_delta2_11_min__mean",
+      "corr_machine": -0.3737368971133981,
+      "corr_speech_duration": -0.08745530266828928,
+      "corr_recording_duration": -0.019944370280689194
+    },
+    {
+      "feature": "mfcc_delta2_06_max__mean",
+      "corr_machine": 0.37313570635995796,
+      "corr_speech_duration": 0.05118545731618213,
+      "corr_recording_duration": -0.01569660683410302
+    },
+    {
+      "feature": "spectral_centroid_hz_mean__mean",
+      "corr_machine": -0.3715453093035747,
+      "corr_speech_duration": 0.05579503385359391,
+      "corr_recording_duration": -0.0633859410786611
+    }
+  ],
+  "stronger_duration_than_label": [],
+  "nan_fraction_train_mean_features": 2.5474576372779965e-05,
+  "distributions_train": [
+    {
+      "feature": "speech_duration_s",
+      "human_n": 809,
+      "human_p25": 6.14,
+      "human_median": 10.9,
+      "human_p75": 19.540000000000003,
+      "machine_n": 193,
+      "machine_p25": 6.68,
+      "machine_median": 9.0,
+      "machine_p75": 14.08,
+      "machine_inside_human_iqr": 0.6010362694300518
+    },
+    {
+      "feature": "recording_duration_s",
+      "human_n": 809,
+      "human_p25": 15.39775,
+      "human_median": 28.822875,
+      "human_p75": 47.60075,
+      "machine_n": 193,
+      "machine_p25": 10.472375,
+      "machine_median": 20.041125,
+      "machine_p75": 44.62175,
+      "machine_inside_human_iqr": 0.3626943005181347
+    },
+    {
+      "feature": "speech_ratio",
+      "human_n": 809,
+      "human_p25": 0.26549981669707423,
+      "human_median": 0.39574478303676486,
+      "human_p75": 0.5641160344655363,
+      "machine_n": 193,
+      "machine_p25": 0.27936221851286713,
+      "machine_median": 0.5625091174325308,
+      "machine_p75": 0.6951838932745855,
+      "machine_inside_human_iqr": 0.26424870466321243
+    },
+    {
+      "feature": "snr_db",
+      "human_n": 809,
+      "human_p25": 42.45109676970743,
+      "human_median": 49.38191784158066,
+      "human_p75": 61.48546283355387,
+      "machine_n": 193,
+      "machine_p25": 36.89387340339313,
+      "machine_median": 54.04713792821279,
+      "machine_p75": 68.87496494410799,
+      "machine_inside_human_iqr": 0.3160621761658031
+    },
+    {
+      "feature": "n_usable_segments",
+      "human_n": 809,
+      "human_p25": 2.0,
+      "human_median": 4.0,
+      "human_p75": 6.0,
+      "machine_n": 193,
+      "machine_p25": 2.0,
+      "machine_median": 3.0,
+      "machine_p75": 5.0,
+      "machine_inside_human_iqr": 0.6113989637305699
+    },
+    {
+      "feature": "spectral_centroid_hz_mean__mean",
+      "human_n": 809,
+      "human_p25": 845.4478817339682,
+      "human_median": 973.1070848370334,
+      "human_p75": 1089.6904951722418,
+      "machine_n": 193,
+      "machine_p25": 743.0162045456077,
+      "machine_median": 807.9149550709535,
+      "machine_p75": 878.4927409917753,
+      "machine_inside_human_iqr": 0.35233160621761656
+    },
+    {
+      "feature": "spectral_flatness_mean__mean",
+      "human_n": 809,
+      "human_p25": 0.03828421603475399,
+      "human_median": 0.05831616706749849,
+      "human_p75": 0.08635404019090259,
+      "machine_n": 193,
+      "machine_p25": 0.018306047427128564,
+      "machine_median": 0.028479868217613263,
+      "machine_p75": 0.044311187354251484,
+      "machine_inside_human_iqr": 0.32642487046632124
+    },
+    {
+      "feature": "f0_voiced_fraction__mean",
+      "human_n": 809,
+      "human_p25": 0.30860823004491533,
+      "human_median": 0.4598497405718331,
+      "human_p75": 0.6173583622764945,
+      "machine_n": 193,
+      "machine_p25": 0.6565420560747663,
+      "machine_median": 0.7157315945387012,
+      "machine_p75": 0.7828333333333333,
+      "machine_inside_human_iqr": 0.16062176165803108
+    },
+    {
+      "feature": "mfcc_static_00_mean__mean",
+      "human_n": 809,
+      "human_p25": -286.7777024080281,
+      "human_median": -265.0351999912237,
+      "human_p75": -243.08046702524388,
+      "machine_n": 193,
+      "machine_p25": -242.03334693459902,
+      "machine_median": -224.03651253197623,
+      "machine_p75": -198.74179829255078,
+      "machine_inside_human_iqr": 0.23316062176165803
+    },
+    {
+      "feature": "mfcc_delta_06_max__mean",
+      "human_n": 809,
+      "human_p25": 4.916378428041935,
+      "human_median": 5.407085390090943,
+      "human_p75": 6.089938867092132,
+      "machine_n": 193,
+      "machine_p25": 5.994473457336426,
+      "machine_median": 6.805431365966797,
+      "machine_p75": 7.725335377454758,
+      "machine_inside_human_iqr": 0.21243523316062177
+    },
+    {
+      "feature": "acf_harmonicity_mean__mean",
+      "human_n": 809,
+      "human_p25": 0.35877610108722513,
+      "human_median": 0.40705158441780476,
+      "human_p75": 0.461516888447752,
+      "machine_n": 193,
+      "machine_p25": 0.4272005599989393,
+      "machine_median": 0.4964614311786429,
+      "machine_p75": 0.5499788479115963,
+      "machine_inside_human_iqr": 0.35233160621761656
+    }
+  ],
+  "outlier_counts_train": [
+    {
+      "feature": "speech_duration_s",
+      "outlier_calls": 85,
+      "human": 68,
+      "machine": 17,
+      "fence_low": -12.982499999999995,
+      "fence_high": 38.11749999999999
+    },
+    {
+      "feature": "recording_duration_s",
+      "outlier_calls": 91,
+      "human": 69,
+      "machine": 22,
+      "fence_low": -33.855796874999996,
+      "fence_high": 95.090328125
+    },
+    {
+      "feature": "speech_ratio",
+      "outlier_calls": 0,
+      "human": 0,
+      "machine": 0,
+      "fence_low": -0.2594379331539187,
+      "fence_high": 1.1432651305148638
+    },
+    {
+      "feature": "snr_db",
+      "outlier_calls": 3,
+      "human": 2,
+      "machine": 1,
+      "fence_low": 11.172233326323443,
+      "fence_high": 93.2959816874978
+    },
+    {
+      "feature": "n_usable_segments",
+      "outlier_calls": 80,
+      "human": 61,
+      "machine": 19,
+      "fence_low": -4.0,
+      "fence_high": 12.0
+    },
+    {
+      "feature": "spectral_centroid_hz_mean__mean",
+      "outlier_calls": 3,
+      "human": 3,
+      "machine": 0,
+      "fence_low": 418.16130017252425,
+      "fence_high": 1457.292875257653
+    },
+    {
+      "feature": "spectral_flatness_mean__mean",
+      "outlier_calls": 24,
+      "human": 24,
+      "machine": 0,
+      "fence_low": -0.03803513440510157,
+      "fence_high": 0.1497089723787733
+    },
+    {
+      "feature": "f0_voiced_fraction__mean",
+      "outlier_calls": 0,
+      "human": 0,
+      "machine": 0,
+      "fence_low": -0.16189674358178907,
+      "fence_high": 1.1937367002137909
+    },
+    {
+      "feature": "mfcc_static_00_mean__mean",
+      "outlier_calls": 3,
+      "human": 0,
+      "machine": 3,
+      "fence_low": -352.4883739929851,
+      "fence_high": -161.62946366425078
+    },
+    {
+      "feature": "mfcc_delta_06_max__mean",
+      "outlier_calls": 29,
+      "human": 5,
+      "machine": 24,
+      "fence_low": 2.776638034444588,
+      "fence_high": 8.662882421337642
+    },
+    {
+      "feature": "acf_harmonicity_mean__mean",
+      "outlier_calls": 2,
+      "human": 1,
+      "machine": 1,
+      "fence_low": 0.19626486189594222,
+      "fence_high": 0.6580657780255621
+    }
+  ],
+  "missing_by_group_train": [
+    {
+      "group": "lfcc",
+      "columns": 1680,
+      "nan_fraction": 0.0
+    },
+    {
+      "group": "mfcc",
+      "columns": 1680,
+      "nan_fraction": 0.0
+    },
+    {
+      "group": "cqcc",
+      "columns": 1092,
+      "nan_fraction": 0.0
+    },
+    {
+      "group": "f0",
+      "columns": 42,
+      "nan_fraction": 0.00249500998003992
+    },
+    {
+      "group": "voice_quality",
+      "columns": 28,
+      "nan_fraction": 0.000499001996007984
+    },
+    {
+      "group": "spectral",
+      "columns": 140,
+      "nan_fraction": 0.0
+    }
+  ],
+  "outcomes": [
+    {
+      "field": "outcome",
+      "label": "human",
+      "value": "",
+      "calls": 629
+    },
+    {
+      "field": "outcome",
+      "label": "human",
+      "value": "answering_machine",
+      "calls": 1
+    },
+    {
+      "field": "outcome",
+      "label": "human",
+      "value": "b2x_async",
+      "calls": 16
+    },
+    {
+      "field": "outcome",
+      "label": "human",
+      "value": "b2x_callback",
+      "calls": 54
+    },
+    {
+      "field": "outcome",
+      "label": "human",
+      "value": "b2x_lead",
+      "calls": 30
+    },
+    {
+      "field": "outcome",
+      "label": "human",
+      "value": "b2x_not_lpr",
+      "calls": 22
+    },
+    {
+      "field": "outcome",
+      "label": "human",
+      "value": "b2x_wrong_org",
+      "calls": 61
+    },
+    {
+      "field": "outcome",
+      "label": "human",
+      "value": "connection_issue",
+      "calls": 8
+    },
+    {
+      "field": "outcome",
+      "label": "human",
+      "value": "refused",
+      "calls": 295
+    },
+    {
+      "field": "outcome",
+      "label": "human",
+      "value": "silence",
+      "calls": 5
+    },
+    {
+      "field": "outcome",
+      "label": "machine",
+      "value": "",
+      "calls": 41
+    },
+    {
+      "field": "outcome",
+      "label": "machine",
+      "value": "answering_machine",
+      "calls": 278
+    },
+    {
+      "field": "outcome",
+      "label": "machine",
+      "value": "b2x_callback",
+      "calls": 11
+    },
+    {
+      "field": "outcome",
+      "label": "machine",
+      "value": "b2x_lead",
+      "calls": 9
+    },
+    {
+      "field": "outcome",
+      "label": "machine",
+      "value": "b2x_not_lpr",
+      "calls": 6
+    },
+    {
+      "field": "outcome",
+      "label": "machine",
+      "value": "b2x_wrong_org",
+      "calls": 1
+    },
+    {
+      "field": "outcome",
+      "label": "machine",
+      "value": "connection_issue",
+      "calls": 8
+    },
+    {
+      "field": "outcome",
+      "label": "machine",
+      "value": "refused",
+      "calls": 8
+    },
+    {
+      "field": "outcome",
+      "label": "machine",
+      "value": "silence",
+      "calls": 13
+    },
+    {
+      "field": "classification_result",
+      "label": "human",
+      "value": "answering_machine|manual_human",
+      "calls": 1
+    },
+    {
+      "field": "classification_result",
+      "label": "human",
+      "value": "асинхронная_связь",
+      "calls": 22
+    },
+    {
+      "field": "classification_result",
+      "label": "human",
+      "value": "интерес_без_данных",
+      "calls": 1
+    },
+    {
+      "field": "classification_result",
+      "label": "human",
+      "value": "лид",
+      "calls": 30
+    },
+    {
+      "field": "classification_result",
+      "label": "human",
+      "value": "не_лпр",
+      "calls": 40
+    },
+    {
+      "field": "classification_result",
+      "label": "human",
+      "value": "не_та_организация",
+      "calls": 77
+    },
+    {
+      "field": "classification_result",
+      "label": "human",
+      "value": "отказ_лпр",
+      "calls": 717
+    },
+    {
+      "field": "classification_result",
+      "label": "human",
+      "value": "перезвон",
+      "calls": 233
+    },
+    {
+      "field": "classification_result",
+      "label": "machine",
+      "value": "answering_machine|answering_machine_text|автоответчик",
+      "calls": 244
+    },
+    {
+      "field": "classification_result",
+      "label": "machine",
+      "value": "answering_machine|автоответчик",
+      "calls": 34
+    },
+    {
+      "field": "classification_result",
+      "label": "machine",
+      "value": "автоответчик",
+      "calls": 71
+    },
+    {
+      "field": "classification_result",
+      "label": "machine",
+      "value": "асинхронная_связь|manual_review",
+      "calls": 1
+    },
+    {
+      "field": "classification_result",
+      "label": "machine",
+      "value": "интерес_без_данных|manual_review",
+      "calls": 3
+    },
+    {
+      "field": "classification_result",
+      "label": "machine",
+      "value": "не_лпр|manual_review",
+      "calls": 4
+    },
+    {
+      "field": "classification_result",
+      "label": "machine",
+      "value": "не_та_организация|manual_review",
+      "calls": 3
+    },
+    {
+      "field": "classification_result",
+      "label": "machine",
+      "value": "отказ_лпр|manual_review",
+      "calls": 4
+    },
+    {
+      "field": "classification_result",
+      "label": "machine",
+      "value": "перезвон|manual_review",
+      "calls": 11
+    }
+  ],
+  "note": "Ассоциации посчитаны только на train. Длительность и SNR не входят в признаки модели. Высокая корреляция не означает, что признак вызван синтезом."
+}

@@ -1,0 +1,49 @@
+{
+  "seed": 42,
+  "val_fraction": 0.2,
+  "unit": "call_id",
+  "counts": {
+    "train": {
+      "rows": 1002,
+      "by_label": {
+        "human": 809,
+        "machine": 193
+      }
+    },
+    "validation": {
+      "rows": 251,
+      "by_label": {
+        "human": 203,
+        "machine": 48
+      }
+    },
+    "test": {
+      "rows": 43,
+      "by_label": {
+        "machine": 25,
+        "human": 18
+      }
+    },
+    "spectra_threshold": {
+      "rows": 190,
+      "by_label": {
+        "machine": 99,
+        "human": 91
+      }
+    },
+    "unknown": {
+      "rows": 0,
+      "by_label": {}
+    },
+    "unreadable": {
+      "rows": 10,
+      "by_label": {
+        "machine": 10
+      }
+    }
+  },
+  "speaker_split": "невозможен: идентификатора говорящего в разметке нет",
+  "generator_split": "невозможен: поле TTS-генератора в разметке нет",
+  "test_rule": "test — это зафиксированный test20. Он не участвует в обучении и выборе порога.",
+  "spectra_threshold_rule": "n100 использовался для порога Spectra-0 1.02. Классические модели на нём не обучаются."
+}

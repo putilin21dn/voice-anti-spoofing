@@ -1,0 +1,81 @@
+{
+  "model": "logistic",
+  "split": "validation",
+  "threshold": 0.5497299188842178,
+  "params": {
+    "C": 0.01
+  },
+  "metrics": {
+    "human": 202,
+    "machine": 48,
+    "tp": 43,
+    "fn": 5,
+    "tn": 185,
+    "fp": 17,
+    "recall_synthetic": 0.8958333333333334,
+    "specificity_human": 0.9158415841584159,
+    "precision_synthetic": 0.7166666666666667,
+    "f1_synthetic": 0.7962962962962963,
+    "balanced_accuracy": 0.9058374587458746,
+    "fpr": 0.08415841584158416,
+    "fnr": 0.10416666666666667,
+    "confusion_matrix_labels": [
+      "human",
+      "machine"
+    ],
+    "confusion_matrix": [
+      [
+        185,
+        17
+      ],
+      [
+        5,
+        43
+      ]
+    ],
+    "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+    "roc_auc": 0.9431724422442245,
+    "pr_auc": 0.8402938888905951
+  },
+  "candidates": [
+    {
+      "params": {
+        "C": 0.01
+      },
+      "threshold": 0.5497299188842178,
+      "validation_balanced_accuracy": 0.9058374587458746,
+      "validation_roc_auc": 0.9431724422442245
+    },
+    {
+      "params": {
+        "C": 0.1
+      },
+      "threshold": 0.36920101639008074,
+      "validation_balanced_accuracy": 0.8934612211221122,
+      "validation_roc_auc": 0.9392533003300331
+    },
+    {
+      "params": {
+        "C": 1.0
+      },
+      "threshold": 0.5,
+      "validation_balanced_accuracy": 0.8721122112211221,
+      "validation_roc_auc": 0.9225453795379538
+    },
+    {
+      "params": {
+        "C": 10.0
+      },
+      "threshold": 0.08533525105923437,
+      "validation_balanced_accuracy": 0.8424092409240924,
+      "validation_roc_auc": 0.897483498349835
+    }
+  ],
+  "n_features": 200,
+  "train_rows": 1002,
+  "validation_rows": 250,
+  "test_used_for_selection": false,
+  "variant": "shape",
+  "excluded_log_energy": 322,
+  "exclusion_rule": "Оставлены коэффициенты LFCC, MFCC и CQCC начиная с 1 и спектральные меры. Энергия, F0 и качество голоса убраны до отбора."
+}

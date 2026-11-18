@@ -1,0 +1,330 @@
+{
+  "n_calls": 279,
+  "n_feature_ok": 278,
+  "n_no_speech": 1,
+  "roles": {
+    "TN": 151,
+    "TP": 63,
+    "FP": 32,
+    "excluded": 28,
+    "FN": 5
+  },
+  "binary_by_campaign": {
+    "('PACK1', 'human_voice')": 88,
+    "('PACK1', 'synthetic')": 58,
+    "('PACK2', 'human_voice')": 95,
+    "('PACK2', 'synthetic')": 10
+  },
+  "candidates": [
+    "lfcc_between_segment_std_mean",
+    "cqcc_c01_mean",
+    "cqcc_between_segment_std_mean",
+    "spafe_cqcc_temporal_mad_mean",
+    "spafe_cqcc_between_segment_std_mean",
+    "speech_to_nonspeech_db"
+  ],
+  "fp_pattern": [
+    {
+      "feature": "logmel_mean",
+      "median_fp": -12.848458,
+      "median_tn": -12.190785,
+      "median_tp": -10.648469,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "logmel_std",
+      "median_fp": 4.28033295,
+      "median_tn": 4.3173881,
+      "median_tp": 4.6118123,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "logmel_iqr",
+      "median_fp": 5.8556209500000005,
+      "median_tn": 6.2147735,
+      "median_tp": 6.5707215,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "logmel_temporal_std_mean",
+      "median_fp": 4.0492305,
+      "median_tn": 3.9821134,
+      "median_tp": 4.3006701,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "logmel_level_temporal_std",
+      "median_fp": 3.79096295,
+      "median_tn": 3.6349094,
+      "median_tp": 3.9300294,
+      "fp_closer_to": "synthetic",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "logmel_low_high_tilt",
+      "median_fp": 0.8296387199999999,
+      "median_tn": 1.288073,
+      "median_tp": 2.2378133,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "mel_flux_l1shape_mean",
+      "median_fp": 0.19257201000000002,
+      "median_tn": 0.19146151,
+      "median_tp": 0.19622984,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "stft_centroid_hz_mean",
+      "median_fp": 1386.61335,
+      "median_tn": 1353.5451,
+      "median_tp": 1156.732,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "stft_rolloff85_hz_mean",
+      "median_fp": 2011.21025,
+      "median_tn": 1898.0505,
+      "median_tp": 1687.4051,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "stft_flatness_mean",
+      "median_fp": 0.10848679,
+      "median_tn": 0.091464001,
+      "median_tp": 0.075954684,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "stft_flux_l1shape_mean",
+      "median_fp": 0.16707450499999998,
+      "median_tn": 0.16503424,
+      "median_tp": 0.17255086,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "logstft_mean",
+      "median_fp": -10.5740595,
+      "median_tn": -10.127394,
+      "median_tp": -8.7017056,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "logstft_temporal_std_mean",
+      "median_fp": 3.6731747,
+      "median_tn": 3.5532795,
+      "median_tp": 3.8460598,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "lfcc_c00_mean",
+      "median_fp": -35.450433000000004,
+      "median_tn": -33.319163,
+      "median_tp": -26.806458,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "lfcc_c01_mean",
+      "median_fp": 6.1951514,
+      "median_tn": 6.8258649,
+      "median_tp": 7.6306482,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "lfcc_temporal_mad_mean",
+      "median_fp": 0.740780885,
+      "median_tn": 0.73172884,
+      "median_tp": 0.78987504,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "lfcc_between_segment_std_mean",
+      "median_fp": 0.801792885,
+      "median_tn": 0.82673266,
+      "median_tp": 0.47763735,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 1
+    },
+    {
+      "feature": "cqcc_c00_mean",
+      "median_fp": -169.449475,
+      "median_tn": -160.5719,
+      "median_tp": -138.36147,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "cqcc_c01_mean",
+      "median_fp": -4.3407686000000005,
+      "median_tn": -5.482453,
+      "median_tp": 3.9868933,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 1
+    },
+    {
+      "feature": "cqcc_temporal_mad_mean",
+      "median_fp": 1.98538115,
+      "median_tn": 1.8693703,
+      "median_tp": 2.2813664,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "cqcc_between_segment_std_mean",
+      "median_fp": 3.71121305,
+      "median_tn": 3.7772504,
+      "median_tp": 2.4864145,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 1
+    },
+    {
+      "feature": "spafe_cqcc_c00_mean",
+      "median_fp": -197.842875,
+      "median_tn": -192.56386,
+      "median_tp": -181.98906,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "spafe_cqcc_c01_mean",
+      "median_fp": 8.59005015,
+      "median_tn": 9.4580399,
+      "median_tp": 9.1334683,
+      "fp_closer_to": "synthetic",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "spafe_cqcc_temporal_mad_mean",
+      "median_fp": 2.5895085,
+      "median_tn": 2.5539884,
+      "median_tp": 2.709267,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 1
+    },
+    {
+      "feature": "spafe_cqcc_between_segment_std_mean",
+      "median_fp": 1.9632128999999998,
+      "median_tn": 2.0774707,
+      "median_tp": 1.2059376,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 1
+    },
+    {
+      "feature": "explanatory_f0_median_hz",
+      "median_fp": 143.11819,
+      "median_tn": 187.21565,
+      "median_tp": 194.94058,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "explanatory_f0_iqr_hz",
+      "median_fp": 30.3786705,
+      "median_tn": 43.35228,
+      "median_tp": 49.224768,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "explanatory_f0_voiced_fraction",
+      "median_fp": 0.441643175,
+      "median_tn": 0.51704545,
+      "median_tp": 0.7806354,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "raw_speech_rms",
+      "median_fp": 0.08113169449999999,
+      "median_tn": 0.090057263,
+      "median_tp": 0.12270478,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "raw_speech_peak",
+      "median_fp": 1.0,
+      "median_tn": 1.0,
+      "median_tp": 1.0,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "raw_clip_fraction",
+      "median_fp": 3.5715452e-05,
+      "median_tn": 3.7696019e-05,
+      "median_tp": 2.7213353e-05,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "speech_to_nonspeech_db",
+      "median_fp": 37.5394825,
+      "median_tn": 38.644174,
+      "median_tp": 63.889051,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 1
+    },
+    {
+      "feature": "spectra_padding_ratio",
+      "median_fp": 0.5771691649999999,
+      "median_tn": 0.49226006,
+      "median_tp": 0.44660675,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "speech_ratio",
+      "median_fp": 0.269312,
+      "median_tn": 0.433331,
+      "median_tp": 0.232484,
+      "fp_closer_to": "synthetic",
+      "candidate_for_next_experiment": 0
+    },
+    {
+      "feature": "duration_s",
+      "median_fp": 27.28,
+      "median_tn": 28.913,
+      "median_tp": 75.496,
+      "fp_closer_to": "human_voice",
+      "candidate_for_next_experiment": 0
+    }
+  ],
+  "normalization": {
+    "median_abs_change_log_energy_peak_minus_raw": 1.3325510999999999,
+    "median_abs_change_centroid_peak_minus_raw": 0.0,
+    "median_abs_change_flatness_peak_minus_raw": 6.704800000000011e-05,
+    "median_abs_change_tilt_peak_minus_raw": 3.3449999999657365e-05,
+    "median_abs_change_log_energy_preemph_minus_raw": 0.28571625000000056,
+    "median_abs_change_centroid_preemph_minus_raw": 571.756845,
+    "median_abs_change_flatness_preemph_minus_raw": 0.030864068000000005,
+    "median_abs_change_tilt_preemph_minus_raw": 3.32670485,
+    "median_mean_log_band_range": 8.10763235,
+    "median_log_of_mean_band_range": 10.734064,
+    "median_logmel_band_range": 7.1209728000000005,
+    "median_mel_log_of_mean_band_range": 9.394689249999999,
+    "median_preemph_fraction_above_1": 0.0,
+    "calls_with_preemph_peak_above_1": 41
+  },
+  "focus_call_ids": [
+    "8b34a750-b5df-4a6d-be75-7fbc207a9546",
+    "fc0ba21c-245c-4388-b0ce-5da9ff149fae",
+    "8dbd9d14-84ef-456d-922d-64a95f861196",
+    "ed9640a9-b85e-43d4-8220-76726f51697f"
+  ]
+}

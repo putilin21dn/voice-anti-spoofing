@@ -1,0 +1,77 @@
+{
+  "model": "svm",
+  "split": "validation",
+  "threshold": -0.2166242832291352,
+  "params": {
+    "C": 0.3,
+    "gamma": "scale"
+  },
+  "metrics": {
+    "human": 202,
+    "machine": 48,
+    "tp": 47,
+    "fn": 1,
+    "tn": 169,
+    "fp": 33,
+    "recall_synthetic": 0.9791666666666666,
+    "specificity_human": 0.8366336633663366,
+    "precision_synthetic": 0.5875,
+    "f1_synthetic": 0.734375,
+    "balanced_accuracy": 0.9079001650165016,
+    "fpr": 0.16336633663366337,
+    "fnr": 0.020833333333333332,
+    "confusion_matrix_labels": [
+      "human",
+      "machine"
+    ],
+    "confusion_matrix": [
+      [
+        169,
+        33
+      ],
+      [
+        1,
+        47
+      ]
+    ],
+    "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+    "roc_auc": 0.9589521452145214,
+    "pr_auc": 0.8598025969142732
+  },
+  "candidates": [
+    {
+      "params": {
+        "C": 0.3,
+        "gamma": "scale"
+      },
+      "threshold": -0.2166242832291352,
+      "validation_balanced_accuracy": 0.9079001650165016,
+      "validation_roc_auc": 0.9589521452145214
+    },
+    {
+      "params": {
+        "C": 1.0,
+        "gamma": "scale"
+      },
+      "threshold": -0.3549931924154026,
+      "validation_balanced_accuracy": 0.8950082508250825,
+      "validation_roc_auc": 0.958539603960396
+    },
+    {
+      "params": {
+        "C": 3.0,
+        "gamma": "scale"
+      },
+      "threshold": -0.583000609462151,
+      "validation_balanced_accuracy": 0.8826320132013201,
+      "validation_roc_auc": 0.9452351485148515
+    }
+  ],
+  "n_features": 139,
+  "train_rows": 1002,
+  "validation_rows": 250,
+  "test_used_for_selection": false,
+  "variant": "spectral",
+  "excluded_log_energy": 4522,
+  "exclusion_rule": "Оставлены центроид, полоса, rolloff, flatness и zero-crossing rate. Кепстр, энергия, F0 и качество голоса убраны до отбора."
+}

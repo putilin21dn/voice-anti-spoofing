@@ -1,0 +1,140 @@
+{
+  "study": "day_20261113_acoustic_representations",
+  "primary_waveform": {
+    "channel": "subscriber channel 0",
+    "sample_rate_hz": 8000,
+    "preemphasis": 0.97,
+    "preemphasis_scope": "each speech segment separately, no state carried across gaps",
+    "amplitude_normalization": "none",
+    "resample": "none"
+  },
+  "speech_intervals": {
+    "source": "evaluation/day_20261113/20261113T175850/window_results/spectra0.csv",
+    "rule": "per call_id and segment_index, start=min(start_time), end=max(end_time)",
+    "vad_rerun": false,
+    "model_inference_rerun": false,
+    "minimum_segment_inherited_s": 0.5,
+    "time_rounding": "window CSV stores seconds rounded to 3 decimals"
+  },
+  "stft": {
+    "window": "hamming_symmetric",
+    "win_length": 160,
+    "hop_length": 80,
+    "n_fft": 256,
+    "center": false,
+    "fmin_hz": 0.0,
+    "fmax_hz": 4000.0,
+    "power": "abs(rfft)^2, unnormalized periodogram",
+    "log": "natural",
+    "log_floor": 1e-10,
+    "applies_to": [
+      "log_mel",
+      "log_stft",
+      "lfcc"
+    ]
+  },
+  "log_mel": {
+    "n_mels": 26,
+    "norm": "slaney",
+    "htk": false,
+    "fmin_hz": 0.0,
+    "fmax_hz": 4000.0,
+    "log": "natural(max(mel_power, 1e-10))"
+  },
+  "log_stft": {
+    "n_bands_for_summary": 16,
+    "band_width_hz": 250.0,
+    "log": "natural(max(power, 1e-10))",
+    "centroid_rolloff_flatness": "computed on linear power of the same STFT",
+    "rolloff": 0.85
+  },
+  "lfcc": {
+    "n_filters": 20,
+    "n_ceps": 20,
+    "fmin_hz": 0.0,
+    "fmax_hz": 4000.0,
+    "filter_shape": "triangular, unnormalized, same construction as classical-anti-spoofing",
+    "dct": "scipy_dct_type2_ortho",
+    "log_floor": 1e-10,
+    "second_preemphasis": false
+  },
+  "cqcc_librosa": {
+    "role": "primary CQCC",
+    "fmin_hz": 62.5,
+    "n_bins": 144,
+    "bins_per_octave": 24,
+    "hop_length": 80,
+    "window": "hann",
+    "tuning": 0.0,
+    "sparsity": 0.0,
+    "scale": true,
+    "pad_mode": "constant",
+    "center": true,
+    "res_type": "soxr_hq",
+    "internal_resample": "librosa may downsample lower octaves by 2 from 8000 Hz; it does not create content above 4000 Hz",
+    "longest_wavelet_samples": 4433,
+    "n_ceps": 13,
+    "dct": "scipy_dct_type2_ortho",
+    "log_floor": 1e-10,
+    "power": "abs(cqt)^2"
+  },
+  "cqcc_spafe": {
+    "role": "diagnostic, not the primary CQCC",
+    "library": "spafe 0.3.3",
+    "declared_fmin_hz": 62.5,
+    "declared_fmax_hz": 4000.0,
+    "number_of_octaves": 6,
+    "bins_per_octave": 24,
+    "f0_hz": 120.0,
+    "q_rate": 1.0,
+    "nfft": 512,
+    "win_len_s": 0.032,
+    "win_hop_s": 0.01,
+    "window": "hamming",
+    "resampling_ratio": 1.0,
+    "pre_emph_inside_spafe": false,
+    "normalize": null,
+    "n_ceps": 13,
+    "effective_band_note": "bins whose constant-Q window exceeds nfft=512 are dropped; effective band is about 539-3953 Hz"
+  },
+  "comparison_variants": {
+    "raw": "subscriber channel, no pre-emphasis, no amplitude normalization",
+    "peak_norm": "peak scaled to 0.99 on the raw segment, no pre-emphasis, clipping is not repaired",
+    "preemph": "primary",
+    "spectral_log": "natural log of STFT power versus the same power left linear; primary waveform",
+    "log_mel": "natural log after the mel filterbank versus the mel energies themselves; primary waveform"
+  },
+  "f0": {
+    "role": "explanatory only, not one of the four representations",
+    "waveform": "raw segment, before pre-emphasis",
+    "method": "librosa.pyin",
+    "fmin_hz": 60.0,
+    "fmax_hz": 400.0,
+    "frame_length": 1024,
+    "hop_length": 80
+  },
+  "spectra0_control": {
+    "threshold": 1.02,
+    "unchanged": true,
+    "inference_rerun": false,
+    "padding_statistics_source": "existing window_results/spectra0.csv",
+    "repeated_audio_in_new_features": false
+  },
+  "candidate_rule": {
+    "min_abs_cliffs_delta": 0.33,
+    "min_abs_mid_tertile_cliffs_delta": 0.2,
+    "max_abs_spearman_with_duration_speech_ratio_rms": 0.3,
+    "requires_same_sign_in_pack1_and_pack2": true,
+    "requires_same_sign_in_all_duration_tertiles": true,
+    "meaning": "a feature worth a later independent experiment, not evidence that a detector improved"
+  },
+  "measured_spafe_band": {
+    "declared_bins_in_range": 122.0,
+    "effective_bins": 70.0,
+    "dropped_bins": 52.0,
+    "effective_fmin_hz": 538.7817831884989,
+    "effective_fmax_hz": 3952.5205887110105,
+    "q": 34.12708770892056
+  },
+  "measured_librosa_cqt_top_hz": 3886.1277646144226
+}

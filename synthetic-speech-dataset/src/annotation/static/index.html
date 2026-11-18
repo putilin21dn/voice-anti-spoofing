@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; media-src 'self'; img-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'">
+  <title>Разметка происхождения речи</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 15px/1.45 "Segoe UI", sans-serif; color: #1d1a16; background: #f3efe6; }
+    header { padding: 14px 18px; background: #243126; color: #f6f3ec; }
+    header p { margin: 4px 0 0; color: #d5dccf; }
+    .layout { display: grid; grid-template-columns: 320px 1fr; min-height: calc(100vh - 78px); }
+    aside { border-right: 1px solid #ddd4c4; background: #faf7f1; overflow: auto; }
+    .filters { padding: 12px; display: grid; gap: 8px; }
+    label { display: grid; gap: 4px; font-size: 13px; }
+    input, select, textarea, button { font: inherit; }
+    input, select, textarea { width: 100%; padding: 6px 8px; border: 1px solid #cabbA4; border-radius: 6px; background: #fff; }
+    button { padding: 7px 10px; border: 1px solid #243126; border-radius: 6px; background: #243126; color: #fff; cursor: pointer; }
+    button.secondary { background: #fff; color: #243126; }
+    button:disabled { opacity: 0.5; cursor: default; }
+    #call-list { list-style: none; margin: 0; padding: 0 8px 16px; }
+    #call-list button { width: 100%; text-align: left; background: transparent; color: inherit; border-color: transparent; }
+    #call-list button.active { background: #e7f0e4; border-color: #8eaa86; }
+    main { padding: 16px 18px 40px; }
+    .banner { background: #fff8e8; border: 1px solid #e2c98a; border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; }
+    .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 16px; margin: 12px 0; }
+    .facts div { background: #fff; border-radius: 8px; padding: 8px 10px; }
+    .facts span { display: block; color: #665e54; font-size: 12px; }
+    .player { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 8px 0 14px; }
+    audio { width: min(520px, 100%); }
+    form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+    form .wide { grid-column: 1 / -1; }
+    .segments { display: grid; gap: 8px; }
+    .segment { display: grid; grid-template-columns: 90px 90px 1.3fr 0.8fr 1fr 1.4fr auto; gap: 6px; align-items: end; }
+    #message { min-height: 1.4em; margin-top: 10px; }
+    #message.error { color: #8d1d1d; }
+    #message.ok { color: #1d5a32; }
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; }
+      .facts, form, .segment { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>Происхождение речи, локально</strong>
+    <p>Аудио читается с этого компьютера и никуда не отправляется. Старые метки human и machine не являются новой разметкой.</p>
+  </header>
+  <div class="layout">
+    <aside>
+      <div class="filters">
+        <label>Разметчик
+          <input id="annotator" maxlength="32" placeholder="код, если размечаете вдвоём">
+        </label>
+        <label id="share-wrap" hidden>Часть
+          <select id="share-filter">
+            <option value="">все</option>
+            <option value="local">моя часть</option>
+            <option value="guest">часть из архива</option>
+          </select>
+        </label>
+        <label>Ответ Spectra-0
+          <select id="model-filter">
+            <option value="">все</option>
+            <option value="spoof">spoof</option>
+            <option value="bonafide">bonafide</option>
+            <option value="none">оценки ещё нет</option>
+          </select>
+        </label>
+        <p id="list-count"></p>
+        <p id="live-status">Страница сама подхватывает новые оценки.</p>
+        <label>Статус проверки
+          <select id="status-filter">
+            <option value="">все</option>
+            <option value="unreviewed">ещё не слушали</option>
+            <option value="in_progress">в работе</option>
+            <option value="reviewed">проверено</option>
+            <option value="needs_second_review">нужна вторая проверка</option>
+            <option value="disputed">спорно</option>
+          </select>
+        </label>
+      </div>
+      <ul id="call-list"></ul>
+    </aside>
+    <main>
+      <div class="banner" id="rules">
+        Метка относится к голосу абонента. Канал нашего робота можно слушать, чтобы не перепутать голоса, но его TTS не делает звонок синтетическим.
+        Неестественное звучание само по себе — это unknown. Исход answering_machine, refused, b2x_lead и соседние коды происхождение голоса не доказывают.
+      </div>
+      <p id="empty">Выберите звонок слева.</p>
+      <section id="workspace" hidden>
+        <h1 id="title"></h1>
+        <div class="facts" id="facts"></div>
+        <h2>Ответы готовых моделей</h2>
+        <p id="score-note">Это не метка. Классические human и machine — старая задача «живой диалог или автоответчик». У AASIST3 нет порога звонка.</p>
+        <div class="facts" id="scores"></div>
+        <div class="player">
+          <button type="button" class="secondary" id="play-mix">Оба канала</button>
+          <button type="button" class="secondary" id="play-left">Левый</button>
+          <button type="button" class="secondary" id="play-right">Правый</button>
+          <audio id="player" controls preload="none"></audio>
+        </div>
+        <p id="channel-help"></p>
+        <form id="form">
+          <label>Основная метка происхождения
+            <select id="primary" name="primary_label">
+              <option value="unknown">unknown — установить нельзя</option>
+              <option value="human_live">human_live — живой человек</option>
+              <option value="human_recorded">human_recorded — записанный человек</option>
+              <option value="synthetic_tts">synthetic_tts — обычный TTS</option>
+              <option value="synthetic_voice_conversion">synthetic_voice_conversion — voice conversion</option>
+              <option value="synthetic_playback">synthetic_playback — синтетика через динамик или трубку</option>
+              <option value="mixed">mixed — в канале абонента есть оба происхождения</option>
+            </select>
+          </label>
+          <label>Дополнительно, если это точно слышно
+            <select id="secondary" name="secondary_label">
+              <option value="">не указано</option>
+              <option value="ai_secretary">ai_secretary</option>
+              <option value="voicemail">voicemail</option>
+              <option value="anti_spam">anti_spam</option>
+              <option value="greeting_only">greeting_only</option>
+            </select>
+          </label>
+          <label>Уверенность
+            <select id="confidence" name="label_confidence">
+              <option value="">не выбрана</option>
+              <option value="high">high</option>
+              <option value="medium">medium</option>
+              <option value="low">low</option>
+            </select>
+          </label>
+          <label>Чем подтверждена метка
+            <select id="source" name="label_source">
+              <option value="unknown_source">unknown_source</option>
+              <option value="manual_listening">manual_listening</option>
+              <option value="verified_metadata">verified_metadata</option>
+              <option value="known_generator">known_generator</option>
+            </select>
+          </label>
+          <label>Статус проверки
+            <select id="review-status" name="review_status">
+              <option value="unreviewed">unreviewed</option>
+              <option value="in_progress">in_progress</option>
+              <option value="reviewed">reviewed</option>
+              <option value="needs_second_review">needs_second_review</option>
+              <option value="disputed">disputed</option>
+            </select>
+          </label>
+          <label><span>Сомнительная запись</span>
+            <input id="doubtful" type="checkbox">
+          </label>
+          <label>TTS-генератор, если известен
+            <input id="tts" name="tts_generator" maxlength="200">
+          </label>
+          <label>Система voice conversion, если известна
+            <input id="conversion" name="voice_conversion_system" maxlength="200">
+          </label>
+          <label>Говорящий, если известен
+            <input id="speaker" name="speaker_id" maxlength="200">
+          </label>
+          <label>Как воспроизводили, если известно
+            <input id="playback" name="playback_method" maxlength="200">
+          </label>
+          <label class="wide">Заметка
+            <textarea id="notes" name="annotation_notes" rows="3"></textarea>
+          </label>
+          <div class="wide">
+            <strong>Интервалы на общей шкале времени записи</strong>
+            <div class="segments" id="segments"></div>
+            <p><button type="button" class="secondary" id="add-segment">Добавить интервал</button></p>
+          </div>
+          <div class="wide player">
+            <button type="submit" id="save">Сохранить</button>
+            <button type="button" class="secondary" id="save-next">Сохранить и открыть следующий</button>
+          </div>
+        </form>
+        <p id="message"></p>
+      </section>
+    </main>
+  </div>
+  <script>
+    const reasons = {
+      human_pool: "прежняя группа: живой исход",
+      machine_answering: "прежняя группа: автоответчик",
+      machine_live_outcome: "прежняя группа: machine и живой исход",
+      label_conflict: "конфликт старых меток"
+    };
+    const state = { calls: [], current: null, dirty: false, drawn: "" };
+    const annotatorInput = document.querySelector("#annotator");
+    annotatorInput.value = localStorage.getItem("ssd-annotator") || "";
+
+    function annotator() {
+      return annotatorInput.value.trim();
+    }
+
+    function fact(title, value) {
+      const box = document.createElement("div");
+      const name = document.createElement("span");
+      name.textContent = title;
+      box.append(name, document.createTextNode(value || "—"));
+      return box;
+    }
+
+    function visibleCalls() {
+      const mode = document.querySelector("#model-filter").value;
+      return state.calls.filter((call) => {
+        const label = ((call.model_scores || {}).spectra0_class || "").trim();
+        if (mode === "spoof" || mode === "bonafide") return label === mode;
+        if (mode === "none") return !label;
+        return true;
+      });
+    }
+
+    function renderList() {
+      const list = document.querySelector("#call-list");
+      const visible = visibleCalls();
+      const scored = state.calls.filter((call) => (call.model_scores || {}).spectra0_class).length;
+      const classical = state.calls.filter((call) => (call.model_scores || {}).logistic_class).length;
+      document.querySelector("#list-count").textContent = `в списке ${visible.length}`;
+      document.querySelector("#live-status").textContent = `обновляется само · Logistic ${classical} · Spectra-0 ${scored}`;
+      const signature = visible.map((call) => {
+        const scores = call.model_scores || {};
+        return [call.call_id, call.review_status, scores.spectra0_class || "", scores.logistic_class || ""].join("|");
+      }).join("\n");
+      if (signature === state.drawn) {
+        list.querySelectorAll("button").forEach((button) => {
+          button.className = state.current && button.dataset.id === state.current.call_id ? "active" : "";
+        });
+        return;
+      }
+      state.drawn = signature;
+      const aside = document.querySelector("aside");
+      const scroll = aside.scrollTop;
+      list.replaceChildren();
+      for (const call of visible) {
+        const item = document.createElement("li");
+        const button = document.createElement("button");
+        button.type = "button";
+        button.dataset.id = call.call_id;
+        button.className = state.current && state.current.call_id === call.call_id ? "active" : "";
+        const title = document.createElement("strong");
+        title.textContent = call.call_id.slice(0, 8);
+        const meta = document.createElement("div");
+        const modelScores = call.model_scores || {};
+        const spectra = (modelScores.spectra0_class || "").trim();
+        const logistic = (modelScores.logistic_class || "").trim();
+        const owner = call.label_owner && call.label_owner !== annotator() ? ` · ${call.label_owner}` : "";
+        meta.textContent = `${Number(call.duration_seconds).toFixed(1)} с · ${call.review_status}${owner} · Spectra ${spectra || "считается"} · Logistic ${logistic || "—"} · ${call.outcome || "без исхода"}`;
+        button.append(title, meta);
+        item.append(button);
+        list.append(item);
+      }
+      aside.scrollTop = scroll;
+    }
+
+    function paintScores(call) {
+      const scores = call.model_scores || {};
+      const scoreText = (value) => value === undefined || value === null || value === "" ? "—" : value;
+      document.querySelector("#scores").replaceChildren(
+        fact("Spectra-0", scores.spectra0_class ? `${scores.spectra0_class}, зазор ${Number(scores.spectra0_score).toFixed(3)}` : "ещё считается"),
+        fact("AASIST3, средний bonafide logit", scores.aasist3_score === undefined || scores.aasist3_score === "" ? "ещё считается" : Number(scores.aasist3_score).toFixed(3)),
+        fact("Logistic", scoreText(scores.logistic_class)),
+        fact("SVM", scoreText(scores.svm_class)),
+        fact("LightGBM", scoreText(scores.lightgbm_class))
+      );
+    }
+
+    async function loadList() {
+      const params = new URLSearchParams({
+        annotator: annotator(),
+        review_status: document.querySelector("#status-filter").value,
+        share: document.querySelector("#share-filter").value
+      });
+      const response = await fetch("/api/calls?" + params.toString());
+      const payload = await response.json();
+      if (!response.ok) {
+        throw new Error(payload.error || "Список не открылся");
+      }
+      state.calls = payload;
+      const aside = document.querySelector("aside");
+      const scroll = aside.scrollTop;
+      renderList();
+      aside.scrollTop = scroll;
+      if (!state.current) return;
+      const fresh = state.calls.find((call) => call.call_id === state.current.call_id);
+      if (!fresh) return;
+      state.current.model_scores = fresh.model_scores || {};
+      state.current.review_status = fresh.review_status;
+      paintScores(state.current);
+    }
+
+    function option(value, text) {
+      const node = document.createElement("option");
+      node.value = value;
+      node.textContent = text;
+      return node;
+    }
+
+    function segmentRow(segment) {
+      const row = document.createElement("div");
+      row.className = "segment";
+      const start = document.createElement("input");
+      start.type = "number";
+      start.min = "0";
+      start.step = "0.01";
+      start.value = segment.start_time || "0";
+      start.dataset.field = "start_time";
+      start.setAttribute("aria-label", "Начало, секунды");
+      const end = document.createElement("input");
+      end.type = "number";
+      end.min = "0";
+      end.step = "0.01";
+      end.value = segment.end_time || "1";
+      end.dataset.field = "end_time";
+      end.setAttribute("aria-label", "Конец, секунды");
+      const label = document.createElement("select");
+      label.dataset.field = "segment_label";
+      label.setAttribute("aria-label", "Метка интервала");
+      ["unknown", "human_live", "human_recorded", "synthetic_tts", "synthetic_voice_conversion", "synthetic_playback", "mixed"].forEach((value) => {
+        label.append(option(value, value));
+      });
+      label.value = segment.segment_label || "unknown";
+      const confidence = document.createElement("select");
+      confidence.dataset.field = "label_confidence";
+      confidence.setAttribute("aria-label", "Уверенность интервала");
+      confidence.append(option("", "уверенность"));
+      ["high", "medium", "low"].forEach((value) => confidence.append(option(value, value)));
+      confidence.value = segment.label_confidence || "";
+      const source = document.createElement("select");
+      source.dataset.field = "label_source";
+      source.setAttribute("aria-label", "Источник интервала");
+      ["unknown_source", "manual_listening", "verified_metadata", "known_generator"].forEach((value) => source.append(option(value, value)));
+      source.value = segment.label_source || "unknown_source";
+      const notes = document.createElement("input");
+      notes.value = segment.notes || "";
+      notes.dataset.field = "notes";
+      notes.placeholder = "заметка";
+      notes.maxLength = 1000;
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "secondary";
+      remove.textContent = "Убрать";
+      remove.addEventListener("click", () => { row.remove(); state.dirty = true; });
+      const id = document.createElement("input");
+      id.type = "hidden";
+      id.dataset.field = "segment_id";
+      id.value = segment.segment_id || "";
+      row.append(start, end, label, confidence, source, notes, remove, id);
+      row.querySelectorAll("input, select").forEach((node) => node.addEventListener("input", () => { state.dirty = true; }));
+      return row;
+    }
+
+    function show(call) {
+      state.current = call;
+      state.dirty = false;
+      document.querySelector("#empty").hidden = true;
+      document.querySelector("#workspace").hidden = false;
+      document.querySelector("#title").textContent = call.call_id;
+      const facts = document.querySelector("#facts");
+      facts.replaceChildren(
+        fact("Длительность", Number(call.duration_seconds).toFixed(2) + " с"),
+        fact("Sample rate", call.sample_rate + " Гц"),
+        fact("Каналы", call.channel_count),
+        fact("Кодек по заголовку", call.codec || "не PCM 16 бит"),
+        fact("Прежняя метка кампании", call.prior_sample),
+        fact("Прежняя классификация", call.prior_classification),
+        fact("Исход звонка", call.outcome),
+        fact("goal_status", call.goal_status),
+        fact("Кампания", call.campaign_name),
+        fact("Старый split", call.locked_split || "нет"),
+        fact("Обучение новой модели", call.training_role)
+      );
+      paintScores(call);
+      const client = Number(call.client_channel);
+      const left = client === 0 ? "абонент, эту речь и размечаем" : "наш робот, это не метка звонка";
+      const right = client === 1 ? "абонент, эту речь и размечаем" : "наш робот, это не метка звонка";
+      document.querySelector("#play-left").textContent = "Левый: " + left;
+      document.querySelector("#play-right").textContent = "Правый: " + right;
+      document.querySelector("#play-right").disabled = Number(call.channel_count) < 2;
+      document.querySelector("#channel-help").textContent = client === 0
+        ? "У этой записи абонент слева. Справа — голос нашего робота."
+        : "У этой записи абонент справа. Слева — голос нашего робота.";
+      document.querySelector("#primary").value = call.primary_label || "unknown";
+      document.querySelector("#secondary").value = call.secondary_label || "";
+      document.querySelector("#confidence").value = call.label_confidence || "";
+      document.querySelector("#source").value = call.label_source || "unknown_source";
+      document.querySelector("#review-status").value = call.review_status || "unreviewed";
+      document.querySelector("#doubtful").checked = call.review_status === "needs_second_review" || call.review_status === "disputed";
+      document.querySelector("#tts").value = call.tts_generator || "";
+      document.querySelector("#conversion").value = call.voice_conversion_system || "";
+      document.querySelector("#speaker").value = call.speaker_id || "";
+      document.querySelector("#playback").value = call.playback_method || "";
+      document.querySelector("#notes").value = call.annotation_notes || "";
+      const segments = document.querySelector("#segments");
+      segments.replaceChildren();
+      for (const segment of call.segments || []) segments.append(segmentRow(segment));
+      document.querySelector("#player").removeAttribute("src");
+      document.querySelector("#message").textContent = "";
+      renderList();
+    }
+
+    async function openCall(callId) {
+      if (state.dirty && !window.confirm("Есть несохранённые изменения. Перейти к другому звонку?")) return;
+      const params = new URLSearchParams({ annotator: annotator() });
+      const response = await fetch(`/api/calls/${callId}?` + params.toString());
+      const payload = await response.json();
+      if (!response.ok) {
+        document.querySelector("#message").textContent = payload.error || "Звонок не открылся";
+        document.querySelector("#message").className = "error";
+        return;
+      }
+      show(payload);
+    }
+
+    function play(channel) {
+      if (!state.current) return;
+      const audio = document.querySelector("#player");
+      audio.src = `/api/audio/${state.current.call_id}?channel=${channel}`;
+      audio.play();
+    }
+
+    function payload() {
+      const segments = [];
+      document.querySelectorAll("#segments .segment").forEach((row) => {
+        const read = (name) => row.querySelector(`[data-field="${name}"]`).value;
+        segments.push({
+          start_time: read("start_time"),
+          end_time: read("end_time"),
+          segment_label: read("segment_label"),
+          label_confidence: read("label_confidence"),
+          label_source: read("label_source"),
+          notes: read("notes"),
+          segment_id: read("segment_id")
+        });
+      });
+      let reviewStatus = document.querySelector("#review-status").value;
+      if (document.querySelector("#doubtful").checked && ["unreviewed", "in_progress", "reviewed"].includes(reviewStatus)) {
+        reviewStatus = "needs_second_review";
+      }
+      return {
+        primary_label: document.querySelector("#primary").value,
+        secondary_label: document.querySelector("#secondary").value,
+        label_confidence: document.querySelector("#confidence").value,
+        label_source: document.querySelector("#source").value,
+        review_status: reviewStatus,
+        tts_generator: document.querySelector("#tts").value,
+        voice_conversion_system: document.querySelector("#conversion").value,
+        speaker_id: document.querySelector("#speaker").value,
+        playback_method: document.querySelector("#playback").value,
+        annotation_notes: document.querySelector("#notes").value,
+        annotator_id: annotator(),
+        segments
+      };
+    }
+
+    async function save(openNext) {
+      const message = document.querySelector("#message");
+      message.className = "";
+      message.textContent = "Сохраняю…";
+      const response = await fetch("/api/calls/" + state.current.call_id, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload())
+      });
+      const body = await response.json();
+      if (!response.ok) {
+        message.className = "error";
+        message.textContent = body.error || "Не сохранилось";
+        return;
+      }
+      state.dirty = false;
+      await loadList();
+      if (openNext) {
+        const visible = visibleCalls();
+        const index = visible.findIndex((call) => call.call_id === body.call_id);
+        const next = visible[index + 1];
+        if (next) {
+          await openCall(next.call_id);
+          return;
+        }
+      }
+      show(body);
+      message.className = "ok";
+      message.textContent = "Сохранено на этом компьютере.";
+    }
+
+    document.querySelector("#call-list").addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-id]");
+      if (button) openCall(button.dataset.id);
+    });
+    document.querySelector("#status-filter").addEventListener("change", () => loadList().catch((error) => alert(error.message)));
+    document.querySelector("#share-filter").addEventListener("change", () => {
+      localStorage.setItem("ssd-share", document.querySelector("#share-filter").value);
+      loadList().catch((error) => alert(error.message));
+    });
+    document.querySelector("#model-filter").addEventListener("change", () => renderList());
+    annotatorInput.addEventListener("change", () => {
+      localStorage.setItem("ssd-annotator", annotator());
+      loadList().catch((error) => alert(error.message));
+    });
+    document.querySelector("#primary").addEventListener("change", () => {
+      const primary = document.querySelector("#primary").value;
+      const source = document.querySelector("#source");
+      const confidence = document.querySelector("#confidence");
+      if (primary === "unknown") {
+        source.value = "unknown_source";
+        confidence.value = "";
+      } else if (source.value === "unknown_source") {
+        source.value = "manual_listening";
+        if (!confidence.value) confidence.value = "medium";
+      }
+    });
+    document.querySelector("#form").addEventListener("input", () => { state.dirty = true; });
+    document.querySelector("#form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      save(false);
+    });
+    document.querySelector("#save-next").addEventListener("click", () => save(true));
+    document.querySelector("#add-segment").addEventListener("click", () => {
+      const duration = Number(state.current.duration_seconds) || 1;
+      document.querySelector("#segments").append(segmentRow({
+        start_time: "0.000",
+        end_time: Math.min(1, duration).toFixed(3),
+        segment_label: "unknown",
+        label_source: "unknown_source"
+      }));
+      state.dirty = true;
+    });
+    document.querySelector("#play-mix").addEventListener("click", () => play("mix"));
+    document.querySelector("#play-left").addEventListener("click", () => play("0"));
+    document.querySelector("#play-right").addEventListener("click", () => play("1"));
+    document.querySelector("#player").addEventListener("error", () => {
+      document.querySelector("#message").className = "error";
+      document.querySelector("#message").textContent = "Запись не открылась в плеере.";
+    });
+    fetch("/api/shares").then((response) => response.json()).then((payload) => {
+      const shares = payload.shares || [];
+      if (!shares.length) return;
+      document.querySelector("#share-wrap").hidden = false;
+      const select = document.querySelector("#share-filter");
+      const saved = localStorage.getItem("ssd-share");
+      select.value = saved === null ? "local" : saved;
+    }).catch(() => {}).finally(() => {
+      loadList().catch((error) => alert(error.message));
+    });
+    setInterval(() => {
+      loadList().catch(() => {});
+    }, 2000);
+  </script>
+</body>
+</html>

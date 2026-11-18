@@ -1,0 +1,16 @@
+batch_id: priority_20261111_20261112
+host: 127.0.0.1
+port: 8770
+min_duration_seconds: 15
+blind_priority: true
+
+paths:
+  collector_root: .
+  audio_root: data/audio
+  manifest_out: data/manifests/priority_20261111_20261112.csv
+  calls_out: data/annotations/priority_20261111_20261112_calls.csv
+  segments_out: data/annotations/priority_20261111_20261112_segments.csv
+  queue_csv: reports/model_assisted_annotation_20261111_20261112/review_queue_all.csv
+  predictions_csv: reports/model_assisted_annotation_20261111_20261112/per_call_predictions.csv
+  quality_report: reports/model_assisted_annotation_20261111_20261112/summary.md
+  logs_dir: logs

@@ -1,0 +1,117 @@
+{
+  "tables": {
+    "checksum": {
+      "max_abs_coefficient": {
+        "lfcc": 5.558837283814455e-07,
+        "cqcc": 4.783876782710195e-06,
+        "spafe_cqcc": 5.983523193364704e-06
+      },
+      "n_compared": {
+        "lfcc": 5300,
+        "cqcc": 3445,
+        "spafe_cqcc": 3445
+      },
+      "max_abs_mean": {
+        "lfcc": 5.8075182440830986e-08,
+        "cqcc": 4.538016042943127e-07,
+        "spafe_cqcc": 4.7199738983927375e-07
+      }
+    },
+    "max_margin_gap": 0.0,
+    "n_calls": 279,
+    "n_segments": 1887,
+    "edges": {
+      "rms": {
+        "high": {
+          "n": 84,
+          "min": 0.11252076,
+          "max": 0.25000065
+        },
+        "low": {
+          "n": 84,
+          "min": 0.030490854,
+          "max": 0.082642269
+        },
+        "mid": {
+          "n": 83,
+          "min": 0.083266928,
+          "max": 0.11198282
+        }
+      },
+      "call_duration": {
+        "high": {
+          "n": 84,
+          "min": 41.488,
+          "max": 392.55
+        },
+        "low": {
+          "n": 84,
+          "min": 15.046,
+          "max": 25.277
+        },
+        "mid": {
+          "n": 83,
+          "min": 25.467,
+          "max": 41.162
+        }
+      },
+      "speech_duration": {
+        "high": {
+          "n": 84,
+          "min": 17.32,
+          "max": 382.02
+        },
+        "low": {
+          "n": 84,
+          "min": 0.78,
+          "max": 9.34
+        },
+        "mid": {
+          "n": 83,
+          "min": 9.4,
+          "max": 17.32
+        }
+      },
+      "speech_ratio": {
+        "high": {
+          "n": 84,
+          "min": 0.509068,
+          "max": 0.990176
+        },
+        "low": {
+          "n": 84,
+          "min": 0.021332,
+          "max": 0.260282
+        },
+        "mid": {
+          "n": 83,
+          "min": 0.260837,
+          "max": 0.507873
+        }
+      },
+      "padding_ratio": {
+        "high": {
+          "n": 84,
+          "min": 0.5647301,
+          "max": 0.82910217
+        },
+        "low": {
+          "n": 84,
+          "min": 0.01663912,
+          "max": 0.43122523
+        },
+        "mid": {
+          "n": 83,
+          "min": 0.43122523,
+          "max": 0.56411897
+        }
+      }
+    },
+    "n_between_human": 176,
+    "n_between_synth": 66
+  },
+  "audio": {
+    "cqcc_c1_max_abs_diff_none_vs_stored": 4.994976769978621e-07,
+    "n_checksum_segments": 1887
+  }
+}

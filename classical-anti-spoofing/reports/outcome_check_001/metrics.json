@@ -1,0 +1,11 @@
+{
+  "source_predictions": "reports/experiment_005/predictions.csv",
+  "thresholds_changed": false,
+  "outcome_in_model": false,
+  "bucket_counts": {
+    "consistent": 258,
+    "empty": 195,
+    "conflict": 21,
+    "ambiguous": 10
+  }
+}

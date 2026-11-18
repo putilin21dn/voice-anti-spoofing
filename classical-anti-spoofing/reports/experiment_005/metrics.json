@@ -1,0 +1,324 @@
+{
+  "models": {
+    "logistic": {
+      "validation": {
+        "human": 202,
+        "machine": 48,
+        "tp": 45,
+        "fn": 3,
+        "tn": 187,
+        "fp": 15,
+        "recall_synthetic": 0.9375,
+        "specificity_human": 0.9257425742574258,
+        "precision_synthetic": 0.75,
+        "f1_synthetic": 0.8333333333333334,
+        "balanced_accuracy": 0.9316212871287128,
+        "fpr": 0.07425742574257425,
+        "fnr": 0.0625,
+        "confusion_matrix_labels": [
+          "human",
+          "machine"
+        ],
+        "confusion_matrix": [
+          [
+            187,
+            15
+          ],
+          [
+            3,
+            45
+          ]
+        ],
+        "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+        "roc_auc": 0.9631806930693069,
+        "pr_auc": 0.8962132352511566,
+        "threshold": 0.49265447022723596,
+        "calls": 250
+      },
+      "test": {
+        "human": 18,
+        "machine": 25,
+        "tp": 24,
+        "fn": 1,
+        "tn": 18,
+        "fp": 0,
+        "recall_synthetic": 0.96,
+        "specificity_human": 1.0,
+        "precision_synthetic": 1.0,
+        "f1_synthetic": 0.9795918367346939,
+        "balanced_accuracy": 0.98,
+        "fpr": 0.0,
+        "fnr": 0.04,
+        "confusion_matrix_labels": [
+          "human",
+          "machine"
+        ],
+        "confusion_matrix": [
+          [
+            18,
+            0
+          ],
+          [
+            1,
+            24
+          ]
+        ],
+        "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+        "roc_auc": 0.9888888888888889,
+        "pr_auc": 0.9933333333333334,
+        "threshold": 0.49265447022723596,
+        "calls": 43
+      },
+      "spectra_threshold": {
+        "human": 91,
+        "machine": 99,
+        "tp": 91,
+        "fn": 8,
+        "tn": 83,
+        "fp": 8,
+        "recall_synthetic": 0.9191919191919192,
+        "specificity_human": 0.9120879120879121,
+        "precision_synthetic": 0.9191919191919192,
+        "f1_synthetic": 0.9191919191919192,
+        "balanced_accuracy": 0.9156399156399156,
+        "fpr": 0.08791208791208792,
+        "fnr": 0.08080808080808081,
+        "confusion_matrix_labels": [
+          "human",
+          "machine"
+        ],
+        "confusion_matrix": [
+          [
+            83,
+            8
+          ],
+          [
+            8,
+            91
+          ]
+        ],
+        "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+        "roc_auc": 0.9770229770229771,
+        "pr_auc": 0.9795635394552804,
+        "threshold": 0.49265447022723596,
+        "calls": 190
+      }
+    },
+    "svm": {
+      "validation": {
+        "human": 202,
+        "machine": 48,
+        "tp": 44,
+        "fn": 4,
+        "tn": 191,
+        "fp": 11,
+        "recall_synthetic": 0.9166666666666666,
+        "specificity_human": 0.9455445544554455,
+        "precision_synthetic": 0.8,
+        "f1_synthetic": 0.8543689320388349,
+        "balanced_accuracy": 0.931105610561056,
+        "fpr": 0.054455445544554455,
+        "fnr": 0.08333333333333333,
+        "confusion_matrix_labels": [
+          "human",
+          "machine"
+        ],
+        "confusion_matrix": [
+          [
+            191,
+            11
+          ],
+          [
+            4,
+            44
+          ]
+        ],
+        "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+        "roc_auc": 0.9600866336633663,
+        "pr_auc": 0.8628300622439233,
+        "threshold": -0.22144920850405767,
+        "calls": 250
+      },
+      "test": {
+        "human": 18,
+        "machine": 25,
+        "tp": 24,
+        "fn": 1,
+        "tn": 18,
+        "fp": 0,
+        "recall_synthetic": 0.96,
+        "specificity_human": 1.0,
+        "precision_synthetic": 1.0,
+        "f1_synthetic": 0.9795918367346939,
+        "balanced_accuracy": 0.98,
+        "fpr": 0.0,
+        "fnr": 0.04,
+        "confusion_matrix_labels": [
+          "human",
+          "machine"
+        ],
+        "confusion_matrix": [
+          [
+            18,
+            0
+          ],
+          [
+            1,
+            24
+          ]
+        ],
+        "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+        "roc_auc": 0.9933333333333334,
+        "pr_auc": 0.9957142857142858,
+        "threshold": -0.22144920850405767,
+        "calls": 43
+      },
+      "spectra_threshold": {
+        "human": 91,
+        "machine": 99,
+        "tp": 90,
+        "fn": 9,
+        "tn": 87,
+        "fp": 4,
+        "recall_synthetic": 0.9090909090909091,
+        "specificity_human": 0.9560439560439561,
+        "precision_synthetic": 0.9574468085106383,
+        "f1_synthetic": 0.9326424870466321,
+        "balanced_accuracy": 0.9325674325674326,
+        "fpr": 0.04395604395604396,
+        "fnr": 0.09090909090909091,
+        "confusion_matrix_labels": [
+          "human",
+          "machine"
+        ],
+        "confusion_matrix": [
+          [
+            87,
+            4
+          ],
+          [
+            9,
+            90
+          ]
+        ],
+        "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+        "roc_auc": 0.9731379731379732,
+        "pr_auc": 0.9729113738524979,
+        "threshold": -0.22144920850405767,
+        "calls": 190
+      }
+    },
+    "lightgbm": {
+      "validation": {
+        "human": 202,
+        "machine": 48,
+        "tp": 45,
+        "fn": 3,
+        "tn": 187,
+        "fp": 15,
+        "recall_synthetic": 0.9375,
+        "specificity_human": 0.9257425742574258,
+        "precision_synthetic": 0.75,
+        "f1_synthetic": 0.8333333333333334,
+        "balanced_accuracy": 0.9316212871287128,
+        "fpr": 0.07425742574257425,
+        "fnr": 0.0625,
+        "confusion_matrix_labels": [
+          "human",
+          "machine"
+        ],
+        "confusion_matrix": [
+          [
+            187,
+            15
+          ],
+          [
+            3,
+            45
+          ]
+        ],
+        "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+        "roc_auc": 0.9755569306930693,
+        "pr_auc": 0.9256466685959821,
+        "threshold": 0.04007147659674559,
+        "calls": 250
+      },
+      "test": {
+        "human": 18,
+        "machine": 25,
+        "tp": 24,
+        "fn": 1,
+        "tn": 18,
+        "fp": 0,
+        "recall_synthetic": 0.96,
+        "specificity_human": 1.0,
+        "precision_synthetic": 1.0,
+        "f1_synthetic": 0.9795918367346939,
+        "balanced_accuracy": 0.98,
+        "fpr": 0.0,
+        "fnr": 0.04,
+        "confusion_matrix_labels": [
+          "human",
+          "machine"
+        ],
+        "confusion_matrix": [
+          [
+            18,
+            0
+          ],
+          [
+            1,
+            24
+          ]
+        ],
+        "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+        "roc_auc": 0.9888888888888889,
+        "pr_auc": 0.9933333333333334,
+        "threshold": 0.04007147659674559,
+        "calls": 43
+      },
+      "spectra_threshold": {
+        "human": 91,
+        "machine": 99,
+        "tp": 92,
+        "fn": 7,
+        "tn": 86,
+        "fp": 5,
+        "recall_synthetic": 0.9292929292929293,
+        "specificity_human": 0.945054945054945,
+        "precision_synthetic": 0.9484536082474226,
+        "f1_synthetic": 0.9387755102040817,
+        "balanced_accuracy": 0.9371739371739372,
+        "fpr": 0.054945054945054944,
+        "fnr": 0.0707070707070707,
+        "confusion_matrix_labels": [
+          "human",
+          "machine"
+        ],
+        "confusion_matrix": [
+          [
+            86,
+            5
+          ],
+          [
+            7,
+            92
+          ]
+        ],
+        "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+        "roc_auc": 0.9814629814629814,
+        "pr_auc": 0.983371296349439,
+        "threshold": 0.04007147659674559,
+        "calls": 190
+      }
+    }
+  },
+  "slices": [],
+  "excluded_without_usable_segments": {
+    "validation": 1,
+    "test": 0,
+    "spectra_threshold": 0
+  },
+  "score_note": "Score моделей не калибровался. Пороги взяты из обучения на validation и здесь не менялись.",
+  "test_used_for_selection": false
+}

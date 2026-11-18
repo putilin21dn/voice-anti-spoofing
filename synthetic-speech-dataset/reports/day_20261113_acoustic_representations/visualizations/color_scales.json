@@ -1,0 +1,27 @@
+{
+  "logmel": {
+    "vmin": -22.176375080596156,
+    "vmax": -1.6560405006508228,
+    "source": "1st-99th percentile of typical human and typical synthetic early slices, cepstra without c0"
+  },
+  "logstft": {
+    "vmin": -19.83196511878409,
+    "vmax": 1.1441619808408328,
+    "source": "1st-99th percentile of typical human and typical synthetic early slices, cepstra without c0"
+  },
+  "lfcc": {
+    "vmin": -7.754652060971348,
+    "vmax": 12.336003482853284,
+    "source": "1st-99th percentile of typical human and typical synthetic early slices, cepstra without c0"
+  },
+  "cqcc": {
+    "vmin": -32.35498772945745,
+    "vmax": 15.114474630187807,
+    "source": "1st-99th percentile of typical human and typical synthetic early slices, cepstra without c0"
+  },
+  "spafe_cqcc": {
+    "vmin": -9.25736958127131,
+    "vmax": 19.839573753474696,
+    "source": "1st-99th percentile of typical human and typical synthetic early slices, cepstra without c0"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "model": "lightgbm",
+  "split": "validation",
+  "threshold": 0.13358606780151605,
+  "params": {
+    "n_estimators": 200,
+    "num_leaves": 31,
+    "learning_rate": 0.05,
+    "min_child_samples": 20
+  },
+  "metrics": {
+    "human": 202,
+    "machine": 48,
+    "tp": 41,
+    "fn": 7,
+    "tn": 188,
+    "fp": 14,
+    "recall_synthetic": 0.8541666666666666,
+    "specificity_human": 0.9306930693069307,
+    "precision_synthetic": 0.7454545454545455,
+    "f1_synthetic": 0.7961165048543689,
+    "balanced_accuracy": 0.8924298679867987,
+    "fpr": 0.06930693069306931,
+    "fnr": 0.14583333333333334,
+    "confusion_matrix_labels": [
+      "human",
+      "machine"
+    ],
+    "confusion_matrix": [
+      [
+        188,
+        14
+      ],
+      [
+        7,
+        41
+      ]
+    ],
+    "score_note": "score — ранжирующая оценка, не калиброванная вероятность",
+    "roc_auc": 0.9317244224422442,
+    "pr_auc": 0.8226593746867097
+  },
+  "candidates": [
+    {
+      "params": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "learning_rate": 0.05,
+        "min_child_samples": 20
+      },
+      "threshold": 0.11080254910658842,
+      "validation_balanced_accuracy": 0.8800536303630363,
+      "validation_roc_auc": 0.9394595709570958
+    },
+    {
+      "params": {
+        "n_estimators": 200,
+        "num_leaves": 31,
+        "learning_rate": 0.05,
+        "min_child_samples": 20
+      },
+      "threshold": 0.13358606780151605,
+      "validation_balanced_accuracy": 0.8924298679867987,
+      "validation_roc_auc": 0.9317244224422442
+    }
+  ],
+  "n_features": 200,
+  "train_rows": 1002,
+  "validation_rows": 250,
+  "test_used_for_selection": false,
+  "variant": "mfcc",
+  "excluded_log_energy": 3066,
+  "exclusion_rule": "Оставлены только MFCC начиная с коэффициента 1. Энергия, LFCC, CQCC, спектр, F0 и качество голоса убраны до отбора."
+}
