@@ -1,0 +1,14 @@
+batch_id: day_20261118
+host: 127.0.0.1
+port: 8767
+min_duration_seconds: 15
+
+paths:
+  collector_root: .
+  audio_root: data/audio/day_20261118
+  manifest_out: data/manifests/day_20261118.csv
+  calls_out: data/annotations/day_20261118_calls.csv
+  segments_out: data/annotations/day_20261118_segments.csv
+  scores_csv: data/manifests/day_20261118_scores.csv
+  quality_report: reports/day_20261118.md
+  logs_dir: logs

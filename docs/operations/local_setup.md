@@ -1,6 +1,17 @@
 # Локальная установка
 
-Общее окружение при сборке не создавалось и пакеты не устанавливались. Ставьте зависимости компонента только когда собираетесь его запускать.
+После клона из корня репозитория:
+
+```powershell
+python scripts/check_setup.py
+python scripts/bootstrap.py
+```
+
+Команда создаёт `.venv` в collector, classical и synthetic, ставит их `requirements.txt` и гоняет тесты без базы, аудио и весов. Повтор тестов: `python scripts/run_tests.py`. Пример без моделей: `python -m shadow_replay shadow_replay/examples/human_call.json`.
+
+Spectra в `bootstrap.py` не ставится. Её torch и веса нужны только для inference, команды ниже.
+
+Общее окружение на все компоненты по-прежнему не используется. Ниже — те же установки по отдельности, если venv нужно пересобрать вручную.
 
 Рекомендуемые интерпретаторы взяты из README источников: Python 3.12 для classical, Python 3.11 или 3.12 для Spectra. Collector и synthetic отдельную версию в README не фиксируют. `pyproject.toml` допускает `>=3.11`.
 

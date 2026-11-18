@@ -61,10 +61,19 @@ def check_models(cfg: dict) -> dict:
     }
 
 
-def score_calls(cfg: dict, calls: list[dict]) -> list[dict]:
+def score_calls(cfg: dict, calls: list[dict], extra_dir: Path | None = None) -> list[dict]:
     bundles = {name: load_bundle(cfg, name, "full") for name in NAMES}
+    if extra_dir is not None:
+        import joblib
+
+        for name in ("svm", "lightgbm"):
+            path = extra_dir / f"{name}.joblib"
+            if not path.is_file():
+                raise FileNotFoundError(f"Нет bundle {path.name}")
+            bundles[f"{name}_new"] = joblib.load(path)
     rows: list[dict] = []
-    for call in calls:
+    total = len(calls)
+    for index, call in enumerate(calls, start=1):
         base = {
             "call_id": call["call_id"],
             "channel_index": call.get("client_channel", ""),
@@ -109,14 +118,23 @@ def score_calls(cfg: dict, calls: list[dict]) -> list[dict]:
                         "score": float(scores[0]),
                         "threshold": float(bundle["threshold"]),
                         "predicted_class": "machine" if predicted == 1 else "human",
-                        "score_kind": "decision_function" if name == "svm" else "predict_proba_class1_machine",
+                        "score_kind": _score_kind(name, bundle),
                     }
                 )
         except Exception as exc:
             base["status"] = "error"
             base["error"] = f"{exc.__class__.__name__}"
             rows.extend(_blank_models(base, bundles))
+        if index == 1 or index % 25 == 0 or index == total:
+            print(f"классика {index}/{total}", flush=True)
     return rows
+
+
+def _score_kind(name: str, bundle: dict) -> str:
+    model_name = str(bundle.get("name") or name)
+    if model_name == "svm" or name.startswith("svm"):
+        return "decision_function"
+    return "predict_proba_class1_machine"
 
 
 def _blank_models(base: dict, bundles: dict) -> list[dict]:
@@ -127,7 +145,7 @@ def _blank_models(base: dict, bundles: dict) -> list[dict]:
             "score": "",
             "threshold": float(bundle["threshold"]),
             "predicted_class": "",
-            "score_kind": "decision_function" if name == "svm" else "predict_proba_class1_machine",
+            "score_kind": _score_kind(name, bundle),
         }
         for name, bundle in bundles.items()
     ]
@@ -154,6 +172,7 @@ def main() -> None:
     parser.add_argument("--config", default="")
     parser.add_argument("--request", default="")
     parser.add_argument("--output", required=True)
+    parser.add_argument("--extra-dir", default="", help="Дополнительные svm.joblib и lightgbm.joblib, имена svm_new и lightgbm_new")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     cfg = load_config(args.config or None)
@@ -163,7 +182,8 @@ def main() -> None:
         destination.write_text(json.dumps(check_models(cfg), ensure_ascii=False, indent=2), encoding="utf-8")
         return
     request = json.loads(Path(args.request).read_text(encoding="utf-8"))
-    rows = score_calls(cfg, request["calls"])
+    extra = Path(args.extra_dir) if args.extra_dir else None
+    rows = score_calls(cfg, request["calls"], extra)
     pd.DataFrame(rows).to_csv(destination, index=False, encoding="utf-8-sig")
 
 

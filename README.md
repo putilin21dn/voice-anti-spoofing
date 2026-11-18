@@ -2,6 +2,22 @@
 
 Локальный инженерный репозиторий для разработки, исследования и оценки обнаружения синтетической речи и автоматических звонков. Это исследовательский код. Он не подключён к production и не меняет AMD, ASR, VAD звонка, call flow или логику завершения вызова.
 
+## Первый запуск
+
+Из корня репозитория, Python 3.11 или новее (для classical лучше 3.12):
+
+```powershell
+python scripts/check_setup.py
+python scripts/bootstrap.py
+python -m shadow_replay shadow_replay/examples/human_call.json
+```
+
+`bootstrap.py` создаёт три `.venv`, ставит `requirements.txt` и запускает тесты. База, аудио и веса для этого не нужны. Файл `voice-dataset-collector/.env` создаётся из примера пустым. `python scripts/run_tests.py` повторяет те же тесты.
+
+Один тест synthetic ищет локальный `confirmed_001` и без него падает. Это отсутствие данных, не поломка установки. Collector, classical и `shadow_replay` от этого файла не зависят.
+
+Spectra и ансамбль A на записи ставятся отдельно: torch, `model.safetensors` и локальные `svm.joblib` / `lightgbm.joblib` в Git не входят. Команды и границы: [docs/operations/local_setup.md](docs/operations/local_setup.md).
+
 Компоненты собраны из четырёх существующих проектов и оставлены самостоятельными каталогами. Так сохраняются их импорты `src.*` и обращения к соседним каталогам (`../classical-anti-spoofing`, `../voice-dataset-collector`, `../voice-anti-spoofing-spectra0`). `genai-agents-worker` и `genai-agents-backend` в этот репозиторий не входят.
 
 ## Архитектура

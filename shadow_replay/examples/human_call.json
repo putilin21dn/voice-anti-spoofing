@@ -1,0 +1,23 @@
+{
+  "shadow_session_id": "example-human",
+  "call_id": null,
+  "started_at": "2026-01-01T00:00:00+00:00",
+  "events": [
+    {
+      "kind": "audio",
+      "elapsed_s": 5.0,
+      "speech_samples": 64600,
+      "spectra_margin": 1.0
+    },
+    {
+      "kind": "classical",
+      "elapsed_s": 5.01,
+      "svm_score": -1.0,
+      "lightgbm_score": 0.0
+    },
+    {
+      "kind": "call_end",
+      "elapsed_s": 6.0
+    }
+  ]
+}
