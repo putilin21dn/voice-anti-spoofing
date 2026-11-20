@@ -148,6 +148,10 @@ synthetic-speech-dataset/data/transcripts/**
 synthetic-speech-dataset/shares/**
 synthetic-speech-dataset/logs/**
 synthetic-speech-dataset/reports/**/models/**
+!synthetic-speech-dataset/reports/origin_retrain_20261113/models/
+!synthetic-speech-dataset/reports/origin_retrain_20261113/models/svm.joblib
+!synthetic-speech-dataset/reports/origin_retrain_20261113/models/lightgbm.joblib
+!synthetic-speech-dataset/reports/origin_retrain_20261113/models/logistic.joblib
 synthetic-speech-dataset/reports/**/figures/**
 synthetic-speech-dataset/reports/**/*request.json
 

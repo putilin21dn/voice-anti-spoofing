@@ -26,7 +26,7 @@ description: >-
 
 - Чтение базы и скачивание WAV: нужен заполненный `voice-dataset-collector/.env`. Значения не печатать и не коммитить.
 - Inference Spectra: отдельный venv, torch и `model.safetensors`. Команды в `docs/operations/local_setup.md`.
-- Ансамбль A: ещё локальные `synthetic-speech-dataset/reports/origin_retrain_20261113/models/svm.joblib` и `lightgbm.joblib`. В Git их нет.
+- Ансамбль A: `synthetic-speech-dataset/reports/origin_retrain_20261113/models/svm.joblib` и `lightgbm.joblib` лежат в Git. Logistic того же прогона лежит рядом и в голосе A не используется.
 
 Для прогона записей читай skill `score-recorded-calls`.
 
@@ -35,4 +35,4 @@ description: >-
 - Не импортировать код из каталогов рядом с репозиторием и не из AppData.
 - Не коммитить аудио, CSV, safetensors, лишние joblib, `.env`, логи.
 - Не менять production AMD, hangup и базу.
-- 18 bundle в `classical-anti-spoofing/models/` уже в Git. Остальные `.joblib` не добавлять.
+- 18 bundle в `classical-anti-spoofing/models/` и три joblib прогона 2026-11-13 уже в Git. Другие `.joblib` не добавлять.

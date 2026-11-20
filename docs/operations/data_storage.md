@@ -27,7 +27,7 @@ Git хранит код, конфиги, схемы и текстовые отч
 
 Правила одновременно по расширению и по каталогу. Ограничения только по размеру нет. Git LFS нет.
 
-Типы: аудио и видео, CSV/TSV/Parquet/JSONL, NumPy и pickle, HDF5, Feather, Arrow, веса PyTorch, ONNX, SafeTensors, архивы, логи, картинки прогонов. Исключение — классические bundle `classical-anti-spoofing/models/**/*.joblib`. Остальные `.joblib` по-прежнему игнорируются.
+Типы: аудио и видео, CSV/TSV/Parquet/JSONL, NumPy и pickle, HDF5, Feather, Arrow, веса PyTorch, ONNX, SafeTensors, архивы, логи, картинки прогонов. Исключения — классические bundle `classical-anti-spoofing/models/**/*.joblib` и три файла `synthetic-speech-dataset/reports/origin_retrain_20261113/models/{svm,lightgbm,logistic}.joblib`. Остальные `.joblib` по-прежнему игнорируются.
 
 Каталоги: локальные `data/` компонентов, `artifacts/`, `logs/`, `.venv`, `__pycache__`, `.cache`, `shares/`.
 

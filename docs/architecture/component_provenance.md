@@ -39,7 +39,7 @@
 - `.env` collector. В нём были непустые `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_SCHEMA`, `S3_HOST`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, `S3_BUCKET`, `S3_SECURE`. Значения здесь не приводятся.
 - Аудио `.wav` во всех четырёх проектах, включая клипы ручного прослушивания и архивы `shares/*.zip`.
 - CSV манифестов, сплитов, признаков, предсказаний и аннотаций. В заголовках манифестов collector есть `external_id`, `s3_key`, `s3_bucket`.
-- Веса `.safetensors` Spectra-0 и AASIST3. Классические `.joblib` из `classical-anti-spoofing/models/` скопированы: 18 файлов, варианты full, `no_energy`, `shape`, `voicing`, `mfcc`, `spectral`. Копии тех же bundle внутри `reports/experiment_*/model.joblib` и модели `origin_retrain_20261113/models/` не копировались.
+- Веса `.safetensors` Spectra-0 и AASIST3. Классические `.joblib` из `classical-anti-spoofing/models/` скопированы: 18 файлов, варианты full, `no_energy`, `shape`, `voicing`, `mfcc`, `spectral`. Копии тех же bundle внутри `reports/experiment_*/model.joblib` не копировались. Три joblib `origin_retrain_20261113/models/` добавлены в Git отдельно.
 - Рисунки `.png` и `.svg`, логи, `.venv`, кэш Hugging Face `.cache`.
 - Списки идентификаторов `completed_call_ids.txt`, `feature_fingerprint.txt` и тексты `data/review/*.txt`.
 
@@ -75,7 +75,7 @@
 - `classical-anti-spoofing/data/splits/*.csv` и `data/features/calls.csv`, `segments.csv` — сплиты и матрицы признаков. `split_metadata.json` и `column_groups.json` скопированы.
 - `classical-anti-spoofing/reports/**/predictions.csv`, `feature_importance.csv`, рисунки ROC и confusion matrix. Рядом лежат скопированные `summary.md` и `metrics.json`.
 - `voice-anti-spoofing-spectra0/models/**/model.safetensors` и `data/output/*.csv`.
-- `synthetic-speech-dataset/reports/origin_retrain_20261113/models/*.joblib`. Базовые classical bundle из `models/` скопированы.
+- Базовые classical bundle из `models/` скопированы. Три joblib прогона 2026-11-13 (`svm`, `lightgbm`, `logistic`) затем добавлены в Git по тому же пути.
 - `synthetic-speech-dataset/reports/ensemble_a/*.csv`, `reports/voting_combinations/*.csv`, крупные `*_features.csv` и `per_call_predictions.csv`.
 - Короткие `reports/cpu_inference/*threads_*.json`: в них есть покомпонентные `call_id` и score восьми звонков. Текстовый разбор — в `reports/cpu_inference_analysis.md`, он скопирован.
 - `evaluation/**` кроме перечисленных Markdown: CSV, JSON запросов и логи прогонов.

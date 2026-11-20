@@ -16,7 +16,7 @@ python -m shadow_replay shadow_replay/examples/human_call.json
 
 Один тест synthetic ищет локальный `confirmed_001` и без него падает. Это отсутствие данных, не поломка установки. Collector, classical и `shadow_replay` от этого файла не зависят.
 
-Spectra и ансамбль A на записи ставятся отдельно: torch, `model.safetensors` и локальные `svm.joblib` / `lightgbm.joblib` в Git не входят. Команды и границы: [docs/operations/local_setup.md](docs/operations/local_setup.md).
+Spectra на записи ставится отдельно: torch и `model.safetensors` в Git не входят. SVM, LightGBM и logistic ансамбля A лежат в `synthetic-speech-dataset/reports/origin_retrain_20261113/models/`. Команды и границы: [docs/operations/local_setup.md](docs/operations/local_setup.md).
 
 Компоненты собраны из четырёх существующих проектов и оставлены самостоятельными каталогами. Так сохраняются их импорты `src.*` и обращения к соседним каталогам (`../classical-anti-spoofing`, `../voice-dataset-collector`, `../voice-anti-spoofing-spectra0`). `genai-agents-worker` и `genai-agents-backend` в этот репозиторий не входят.
 
@@ -128,7 +128,7 @@ python -m unittest discover -s tests
 | Spectra-AASIST3 | `voice-anti-spoofing-spectra0/models/spectra_aasist3/model.safetensors` | Hugging Face `lab260/Spectra-AASIST3`. `model.py` уже лежит рядом |
 | Encoder | кэш Hugging Face | `facebook/wav2vec2-xls-r-300m`, догружается при первом запуске |
 | Logistic / SVM / LightGBM | `classical-anti-spoofing/models/` | уже лежат в репозитории: `logistic`, `svm`, `lightgbm` и варианты `no_energy`, `shape`, `voicing`, `mfcc`, `spectral` |
-| Модели происхождения 2026-11-13 | `synthetic-speech-dataset/reports/origin_retrain_20261113/models/` | локальные `.joblib` того прогона |
+| Модели происхождения 2026-11-13 | `synthetic-speech-dataset/reports/origin_retrain_20261113/models/` | в Git: `svm.joblib`, `lightgbm.joblib`, `logistic.joblib` |
 
 Скачивание: из каталога Spectra выполнить `python src/download_model.py` только когда веса действительно нужны. При переносе модели не скачивались.
 
