@@ -29,6 +29,14 @@ Copy-Item .env.example .env
 
 Нужны `psycopg[binary]`, `boto3`, `python-dotenv`. Те же ограничения записаны в группе `dataset-collector` корневого `pyproject.toml`.
 
+Wav когорты метрик этим же окружением, из корня репозитория:
+
+```powershell
+voice-dataset-collector\.venv\Scripts\python.exe synthetic-speech-dataset\fetch_metrics_cohort.py
+```
+
+Список из 818 `call_id` уже в Git. Команда докачивает только отсутствующие файлы. В вывод не попадают `external_id` и ключ S3.
+
 ## Classical
 
 ```powershell

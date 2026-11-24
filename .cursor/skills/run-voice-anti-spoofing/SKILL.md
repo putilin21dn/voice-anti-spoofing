@@ -27,6 +27,7 @@ description: >-
 - Чтение базы и скачивание WAV: нужен заполненный `voice-dataset-collector/.env`. Значения не печатать и не коммитить.
 - Inference Spectra: отдельный venv, torch и `model.safetensors`. Команды в `docs/operations/local_setup.md`.
 - Ансамбль A: `synthetic-speech-dataset/reports/origin_retrain_20261113/models/svm.joblib` и `lightgbm.joblib` лежат в Git. Logistic того же прогона лежит рядом и в голосе A не используется.
+- Wav когорты метрик в Git нет. Список `synthetic-speech-dataset/data/cohorts/metrics_20261111_16.txt` есть. Качает `fetch_metrics_cohort.py`, см. skill `score-recorded-calls`.
 
 Для прогона записей читай skill `score-recorded-calls`.
 

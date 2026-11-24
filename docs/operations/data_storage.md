@@ -17,6 +17,7 @@ Git хранит код, конфиги, схемы и текстовые отч
 | CSV окон Spectra | `voice-anti-spoofing-spectra0/data/output/` |
 | Аннотации и дневные манифесты | `synthetic-speech-dataset/data/` |
 | Новые `.joblib` происхождения | `synthetic-speech-dataset/reports/origin_retrain_20261113/models/` |
+| Список 818 звонков метрик | `synthetic-speech-dataset/data/cohorts/metrics_20261111_16.txt` |
 | Прогоны оценки | `synthetic-speech-dataset/evaluation/` |
 
 На этой машине аудио и таблицы по-прежнему можно держать локально по путям внутри `voice-anti-spoofing`. Код не читает исходники из каталогов рядом с репозиторием. Симлинки наружу не создавались.

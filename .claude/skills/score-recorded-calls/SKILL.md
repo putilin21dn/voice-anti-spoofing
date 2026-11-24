@@ -35,3 +35,15 @@ description: >-
 В базу и в интерфейс результат не писать. Hangup не вызывать. Телефоны, `external_id`, `s3_key`, `s3_bucket`, `room_suffix` не печатать.
 
 Сводка уже посчитанного дня: из корня `python -m shadow_replay.summarize_day`. Она пишет только локальный CSV и печатает количества.
+
+## Когорта метрик
+
+818 звонков 11–12 и 16 ноября, на которых считался голос A, перечислены в `synthetic-speech-dataset/data/cohorts/metrics_20261111_16.txt`. Wav в Git нет.
+
+Если какого-то файла из колонки `source_file` нет, скачать отсутствующие интерпретатором коллектора из корня репозитория:
+
+```powershell
+voice-dataset-collector\.venv\Scripts\python.exe synthetic-speech-dataset\fetch_metrics_cohort.py
+```
+
+Нужен заполненный `voice-dataset-collector/.env`. Уже лежащие wav команда не качает повторно и к базе не ходит. `external_id`, ключ S3 и телефон не печатать и не сохранять.

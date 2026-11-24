@@ -138,6 +138,8 @@ python -m unittest discover -s tests
 
 Положите файлы по относительным путям из `classical-anti-spoofing/config/config.yaml` и `synthetic-speech-dataset/config/config.yaml`, либо поправьте пути в своей локальной копии конфига. Исходные CSV и WAV оставлены в прежних каталогах на этой машине и в новый репозиторий не копировались.
 
+Когорта метрик голоса A — 818 `call_id` в `synthetic-speech-dataset/data/cohorts/metrics_20261111_16.txt`. Сами wav качает `synthetic-speech-dataset/fetch_metrics_cohort.py` из базы и S3 в уже указанные относительные пути. Команда и границы для агента: skill `score-recorded-calls`.
+
 Пустые `data/raw`, `data/interim`, `data/processed`, `data/external` — место для новой раскладки, если она понадобится. Текущие скрипты читают пути внутри компонентов, а не эти четыре каталога.
 
 ## Локальные артефакты
